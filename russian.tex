@@ -32,7 +32,7 @@
 
 \title{\LaTeX\ в 2017 году}
 \author{Сергей Головань}
-\date{10 мая 2017 г.}
+\date{15 мая 2017 г.}
 
 \renewcommand\topfraction{1}
 \renewcommand\textfraction{0.1}
@@ -175,7 +175,7 @@ Euler, который мне тоже нравится. Сам процесс н
 применяю \texttt{unicode-math} для гарнитур вроде \emph{STIX Two Math} или
 \emph{Libertinus Math}.
 
-\section{Пакет локализации: Babel}
+\section{Пакет локализации: babel}
 Сейчас существует два распространённых пакета, которые отвечают за
 локализацию документа --- \href{https://www.ctan.org/pkg/babel}{\texttt{babel}} и
 \href{https://www.ctan.org/pkg/polyglossia}{\texttt{polyglossia}}\index{локализация}.
@@ -528,6 +528,49 @@ $\text{\texttt{---}}\to\text{---}$ или $\text{\texttt{<<}}\to\text{<<}$)
 \end{figure}
 можно увидеть, как именно программируется
 предметный указатель в тексте, и как он подключается в два прохода.
+
+\section{Система сборки: latexmk}
+Строго говоря, система сборки нужна не всегда. Для случаев одиночных коротких
+документов без оглавления, библиографии и т.~п. без нее вполне можно
+обойтись. А вот если библиография, предметный указатель, перекрёстные
+ссылки в документе есть, то система сборки, позволяющая не думать, сколько
+раз запускать компилятор, \texttt{biber}, \texttt{xindy}, существенно
+повышает удобство использования \LaTeX. Для особо сложных случаев, когда
+в одном проекте нужны разные компиляторы \LaTeX (есть у меня ещё такие со
+стародавних времен), я использую
+\href{https://www.gnu.org/software/make/}{GNU \texttt{make}}
+с довольно громоздким \texttt{Makefile}. Но для новых проектов гораздо
+более удобным представляется
+\href{https://www.ctan.org/pkg/latexmk}{\texttt{latexmk}}
+с небольшим файлом конфигурации. В частности, данный документ успешно
+собирается одной командой, представленной на рисунке~\ref{latexmk1},
+\begin{figure}[tp]
+\footnotesize
+\begin{verbatim}
+% latexmk russian.tex
+
+...
+
+%
+\end{verbatim}
+\caption{Компиляция документа с помощью \texttt{latexmk}}\label{latexmk1}
+\end{figure}
+с использованием конфигурационного файла с рисунка~\ref{latexmk2}.
+\begin{figure}[tp]
+\footnotesize
+\begin{verbatim}
+$pdf_mode = 1;
+$pdflatex = 'lualatex %O %S';
+$makeindex = 'texindy -M ruseng.xdy %O %S';
+$bibtex = 'biber %O %B'
+\end{verbatim}
+\caption{Конфигурационный файл \texttt{latexmkrc}}\label{latexmk2}
+\end{figure}
+В результате запуска \texttt{latexmk} компилятор запускается несколько раз,
+в промежутках вспомогательные файлы обрабатываются с помощью \texttt{biber}
+и \texttt{xindy} (при необходимости).
+
+\end{document}
 
 \section{Пример документа}
 \begin{figure}[tp]
