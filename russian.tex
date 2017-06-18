@@ -24,6 +24,15 @@
 \makeindex
 
 \usepackage{tcolorbox}
+\tcbuselibrary{listings,minted}
+\usemintedstyle{bw}
+\newtcblisting{latexcode}{listing only,minted language=latex,minted options={fontsize=\footnotesize}}
+\newtcblisting{bibtexcode}{listing only,minted language=bibtex,minted options={fontsize=\footnotesize}}
+\newtcblisting{latexmkcode}{listing only,minted language=perl,minted options={fontsize=\footnotesize}}
+\newtcblisting{makecode}{listing only,minted language=make,minted options={fontsize=\footnotesize}}
+\newtcblisting{shcode}{listing only,minted language=shell,minted options={fontsize=\footnotesize}}
+\newtcblisting{xindycode}{listing only,minted language=lisp,minted options={fontsize=\footnotesize}}
+
 
 \usepackage[colorlinks,allcolors=blue,hyperindex=false]{hyperref}
 \newcommand\foothref[2]{%
@@ -199,34 +208,25 @@ Euler, который мне тоже нравится. Сам процесс н
 чем у \package{babel}, он ближе к интерфейсу пакета \package{fontspec}
 выбора шрифтов, который я рассмотрю позже. На рисунках~\ref{babel1}--\ref{polygl1}
 \begin{figure}[tp]
-\begin{tcolorbox}
-\footnotesize
-\begin{verbatim}
+\begin{latexcode}
 \usepackage[T2A]{fontenc}
 \usepackage[utf8]{luainputenc}
 \usepackage[english,russian]{babel}
-\end{verbatim}
-\end{tcolorbox}
+\end{latexcode}
 \caption{Подключение пакета \package{babel} для работы со старой кодировкой шрифта}\label{babel1}
 \end{figure}
 \begin{figure}[tp]
-\begin{tcolorbox}
-\footnotesize
-\begin{verbatim}
+\begin{latexcode}
 \usepackage[english,russian]{babel}
-\end{verbatim}
-\end{tcolorbox}
+\end{latexcode}
 \caption{Подключение пакета \package{babel} для работы с новой юникодной кодировкой шрифта}\label{babel2}
 \end{figure}
 \begin{figure}[tp]
-\begin{tcolorbox}
-\footnotesize
-\begin{verbatim}
+\begin{latexcode}
 \usepackage{polyglossia}
 \setmainlanguage{russian}
 \setotherlanguage{english}
-\end{verbatim}
-\end{tcolorbox}
+\end{latexcode}
 \caption{Подключение пакета \package{polyglossia}}\label{polygl1}
 \end{figure}
 приведены примеры подключения этих пакетов.
@@ -263,14 +263,11 @@ e^x=\sum_{n=1}^\infty\frac{x^n}{n!},\tag*{\textit{(1)}}
 предназначен пакет \foothref{https://www.ctan.org/pkg/fontspec}{\package{fontspec}}.
 На рис.~\ref{fontspec1}
 \begin{figure}[tp]
-\begin{tcolorbox}
-\footnotesize
-\begin{verbatim}
+\begin{latexcode}
 \usepackage{fontspec}
 \setmainfont{STIX Two Text}[Ligatures=TeX]
 \setmonofont{PT Mono}[Scale=0.9]
-\end{verbatim}
-\end{tcolorbox}
+\end{latexcode}
 \caption{Подключение шрифтов с использованием
 \package{fontspec}}\label{fontspec1}
 \end{figure}
@@ -294,9 +291,7 @@ $\verb|---|\mapsto\text{---}$ или $\verb|<<>>|\mapsto\text{<<>>}$)
 использовании источники
 помещаются в отдельный файл (см. рис.~\ref{bibfile}).
 \begin{figure}[tp]
-\begin{tcolorbox}
-\footnotesize
-\begin{verbatim}
+\begin{bibtexcode}
 @book{yolkin1997,
   title={Редукция нелинейных управляемых систем.
          Дифференциально"=геометрический подход},
@@ -335,8 +330,7 @@ $\verb|---|\mapsto\text{---}$ или $\verb|<<>>|\mapsto\text{<<>>}$)
   publisher={Фальк},
   langid={russian},
 }
-\end{verbatim}
-\end{tcolorbox}
+\end{bibtexcode}
 \caption{Файл с источниками для списка литературы}\label{bibfile}
 \end{figure}
 Далее при каждом использовании команды~\verb|\cite{key}| соответствующая
@@ -346,27 +340,21 @@ $\verb|---|\mapsto\text{---}$ или $\verb|<<>>|\mapsto\text{<<>>}$)
 публикации, в порядке цитирования и т.\,п.
 (На рис.~\ref{bibliography} приведены команды, выбирающие стиль
 \begin{figure}[tp]
-\begin{tcolorbox}
-\footnotesize
-\begin{verbatim}
+\begin{latexcode}
 \bibliographystyle{plainnat}
 \bibliography{referencesfile}
-\end{verbatim}
-\end{tcolorbox}
+\end{latexcode}
 \caption{Печать списка литературы с помощью \BibTeX}\label{bibliography}
 \end{figure}
 \begin{figure}[tp]
-\begin{tcolorbox}
-\footnotesize
-\begin{verbatim}
+\begin{latexcode}
 \usepackage[style=gost-authoryear]{biblatex}
 \addbibresource{referencesfile.bib}
 
 ...
 
 \printbibliography
-\end{verbatim}
-\end{tcolorbox}
+\end{latexcode}
 \caption{Печать списка литературы с помощью \package{biblatex}}\label{biblatex1}
 \end{figure}
 списка литературы и собственно печатающая его.)
@@ -463,9 +451,7 @@ $\verb|---|\mapsto\text{---}$ или $\verb|<<>>|\mapsto\text{<<>>}$)
 сортировки (пример таких правил для русского и английского языков см.\ на
 рис.~\ref{xindy1}).
 \begin{figure}[tp]
-\begin{tcolorbox}
-\footnotesize
-\begin{verbatim}
+\begin{xindycode}
 (define-letter-groups ("А" "Б" "В" "Г" "Д" "Е" "Ж" "З" "И" "Й" "К"
     "Л" "М" "Н" "О" "П" "Р" "С" "Т" "У" "Ф" "Х" "Ц" "Ч" "Ш" "Щ" "Ъ"
     "Ы" "Ь" "Э" "Ю" "Я" "A" "B" "C" "D" "E" "F" "G" "H" "I" "J" "K"
@@ -498,8 +484,7 @@ $\verb|---|\mapsto\text{---}$ или $\verb|<<>>|\mapsto\text{<<>>}$)
 	      :rule-set ("alphabetize" "ignore-special"))
 (use-rule-set :run 1
 	      :rule-set ("reorderyo" "ignore-special"))
-\end{verbatim}
-\end{tcolorbox}
+\end{xindycode}
 \caption{Список правил \file{ruseng.xdy} для русско-английского указателя
 \exe{xindy}}\label{xindy1}
 \end{figure}
@@ -526,9 +511,7 @@ $\verb|---|\mapsto\text{---}$ или $\verb|<<>>|\mapsto\text{<<>>}$)
 вроде \file{tex/inputenc/cp1251}.
 На рисунках~\ref{xindy2} и~\ref{xindy3}
 \begin{figure}[tp]
-\begin{tcolorbox}
-\footnotesize
-\begin{verbatim}
+\begin{latexcode}
 \usepackage[xindy,noautomatic]{imakeidx}
 \makeindex
 
@@ -539,14 +522,11 @@ $\verb|---|\mapsto\text{---}$ или $\verb|<<>>|\mapsto\text{<<>>}$)
 ...
 
 \printindex
-\end{verbatim}
-\end{tcolorbox}
+\end{latexcode}
 \caption{Предметный указатель в тексте документа}\label{xindy2}
 \end{figure}
 \begin{figure}[tp]
-\begin{tcolorbox}
-\footnotesize
-\begin{verbatim}
+\begin{shcode}
 % lualatex doc.tex
 
 ...
@@ -560,8 +540,7 @@ $\verb|---|\mapsto\text{---}$ или $\verb|<<>>|\mapsto\text{<<>>}$)
 ...
 
 %
-\end{verbatim}
-\end{tcolorbox}
+\end{shcode}
 \caption{Компиляция документа с предметным указателем}\label{xindy3}
 \end{figure}
 можно увидеть, как именно программируется
@@ -583,29 +562,23 @@ $\verb|---|\mapsto\text{---}$ или $\verb|<<>>|\mapsto\text{<<>>}$)
 с небольшим файлом конфигурации. В частности, данный документ успешно
 собирается одной командой, представленной на рисунке~\ref{latexmk1},
 \begin{figure}[tp]
-\begin{tcolorbox}
-\footnotesize
-\begin{verbatim}
+\begin{shcode}
 % latexmk russian.tex
 
 ...
 
 %
-\end{verbatim}
-\end{tcolorbox}
+\end{shcode}
 \caption{Компиляция документа с помощью \exe{latexmk}}\label{latexmk1}
 \end{figure}
 с использованием конфигурационного файла с рисунка~\ref{latexmk2}.
 \begin{figure}[tp]
-\begin{tcolorbox}
-\footnotesize
-\begin{verbatim}
+\begin{latexmkcode}
 $pdf_mode = 1;
 $pdflatex = 'lualatex %O %S';
 $makeindex = 'texindy -M ruseng.xdy %O %S';
 $bibtex = 'biber %O %B'
-\end{verbatim}
-\end{tcolorbox}
+\end{latexmkcode}
 \caption{Конфигурационный файл \file{latexmkrc}}\label{latexmk2}
 \end{figure}
 В результате запуска \exe{latexmk} компилятор запускается несколько раз,
@@ -621,17 +594,14 @@ $bibtex = 'biber %O %B'
 ещё послужит. Особенно в комбинации с \exe{latexmk}, то есть с правилом,
 подобным представленному на рисунке~\ref{latexmk3}.
 \begin{figure}[tp]
-\begin{tcolorbox}
-\footnotesize
-\begin{verbatim}
+\begin{shcode}
 ...
 
 %.pdf: %.tex
         latexmk -lualatex $<
 
 ...
-\end{verbatim}
-\end{tcolorbox}
+\end{shcode}
 \caption{Отрывок \file{Makefile} с использованием
 \exe{latexmk}}\label{latexmk3}
 \end{figure}
