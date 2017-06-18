@@ -24,8 +24,9 @@
 \makeindex
 
 \usepackage{tcolorbox}
-\tcbuselibrary{listings,minted}
+\tcbuselibrary{skins,listings,minted}
 \usemintedstyle{bw}
+\tcbset{enhanced,colback=black!5,colframe=black!5,fuzzy shadow={0.5mm}{-0.5mm}{-1.0mm}{0.5mm}{black!50}}
 \newtcblisting{latexcode}{listing only,minted language=latex,minted options={fontsize=\footnotesize}}
 \newtcblisting{bibtexcode}{listing only,minted language=bibtex,minted options={fontsize=\footnotesize}}
 \newtcblisting{latexmkcode}{listing only,minted language=perl,minted options={fontsize=\footnotesize}}
@@ -391,7 +392,7 @@ $\verb|---|\mapsto\text{---}$ или $\verb|<<>>|\mapsto\text{<<>>}$)
 \index{Ёлкин}%
 \index{Есин}
 \begin{figure}[tp]
-\begin{tcolorbox}[colback=white]
+\begin{tcolorbox}[colback=white,colframe=white]
 \centering
 \small
 \printbibliography
@@ -492,7 +493,7 @@ $\verb|---|\mapsto\text{---}$ или $\verb|<<>>|\mapsto\text{<<>>}$)
 Е и Ё сортируются вместе (но не вперемешку, в одинаковых словах Ё идёт после Е,
 как на рис.~\ref{xindy4}).
 \begin{figure}[tp]
-\begin{tcolorbox}[colback=white]
+\begin{tcolorbox}[colback=white,colframe=white]
 \centering
 \small
 \vspace*{-2ex}
