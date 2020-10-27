@@ -34,6 +34,11 @@
 \newtcblisting{shcode}{listing only,minted language=shell-session,minted options={fontsize=\footnotesize}}
 \newtcblisting{xindycode}{listing only,minted language=lisp,minted options={fontsize=\footnotesize}}
 
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\renewcommand\headrulewidth{0pt}
+\fancyhead{}
+\fancyfoot[C]{\fontspec{STIX Two Text}\thepage}
 
 \usepackage[colorlinks,allcolors=blue,hyperindex=false]{hyperref}
 \newcommand\foothref[2]{%
@@ -48,7 +53,7 @@
 
 \usepackage{epigraph}
 
-\title{\LaTeX\ в 2017 году}
+\title{\LaTeX\ в 2020 году}
 \author{Сергей Головань}
 %\date{22 мая 2017 г.}
 
@@ -175,8 +180,8 @@ UTF-8 «из коробки» как основную и единственну�
 .\index{набор математики}
 Также начали разрабатываться шрифты с поддержкой юникодной математики. Примеры таких
 шрифтов: \emph{Latin Modern Math}, \emph{Asana Math}, \emph{STIX Math},
-\emph{XITS Math} и другие (в данном документе есть формула, набранная
-шрифтом \emph{STIX Two Math}).
+\emph{XITS Math} и другие (в разделе~\ref{sec:fonts} данного документа приведены
+примеры текстов, набранных разными шрифтами).
 При этом традиционный метод вёрстки математических формул не исчез, что
 очень радует, так как всё-таки \package{unicode-math} в сочетании со шрифтами
 Computer Modern (или их клонами) пока еще выглядит не вполне хорошо.
@@ -659,11 +664,11 @@ Control Systems). Их изобрели для работы с исходным 
 \foothref{https://owncloud.org}{OwnCloud} (своеобразный хостинг для бедных).
 
 \section{Пример документа}
-В заключение приведу пример законченного документа, который можно скомпилировать
+В данном разделе приведу пример законченного документа, который можно скомпилировать
 с помощью \LuaLaTeX{}, \exe{biber} и \exe{xindy}. Если рядом с данным документом
 разместить файл \path{latexmkrs} из примера на рисунке~\ref{latexmk2}, то
 сборку всего проекта можно будет осуществить одной командой \exe{latexmk}.
-\begin{figure}[tp]
+\begin{figure}[t]
 \begin{latexcode}
 \documentclass{article}
 \usepackage{microtype}
@@ -693,7 +698,7 @@ Control Systems). Их изобрели для работы с исходным 
 \end{latexcode}
 \caption{Пример законченного документа}\label{docexample}
 \end{figure}
-\begin{figure}[tp]
+\begin{figure}[t]
 \begin{shcode}
 % latexmk doc.tex
 
@@ -703,5 +708,261 @@ Control Systems). Их изобрели для работы с исходным 
 \end{shcode}
 \caption{Пример сессии (на удивление коротенький)}\label{sessionexample}
 \end{figure}
+
+\section{Примеры математических шрифтов}\label{sec:fonts}
+За последние несколько лет появилось довольно много
+\foothref{https://tex.stackexchange.com/questions/425098/which-opentype-math-fonts-are-available}{математических шрифтов}
+в формате OTF для использования с пакетом \package{unicode-math}. При этом существуют как коммерческие,
+так и свободные шрифты. В данном разделе я попытался собрать те из них, для
+которых нашелся подходящий текстовый шрифт, поддерживающий кириллицу. Все шрифты в примерах либо свободные,
+либо включены в стандартный набор шифтов Microsoft Windows. Особняком стоит шрифт \emph{Fira Math},
+который не имеет засечек и, соответственно, хорошо подходит вместе с текстовым шрифтом \emph{Fira Sans}
+или \emph{FiraGO} для презентаций, сверстанных в \package{beamer}. 
+
+\newcommand{\Res}{\operatorname{Res}}
+\newcommand{\example}[1]{\par\medskip\noindent\textbf{#1:}\enskip\ignorespaces}
+\newcommand{\mathsamplerus}[1]{%
+  \example{Формула обращения}
+  Пусть $g\colon\mathbb{R}^{+}\to\mathbb{R}$ --- ограниченная и непрерывная справа функция, и пусть
+  $\varphi(\alpha)\mathrel{:=}\int_0^\infty e^{-\alpha t}g(t)\,dt$ --- её преобразование Лапласа.
+  Тогда для любого $t>0$,
+  \begin{equation}
+    g(t) = \lim_{\varepsilon\to0}\lim_{\lambda\to\infty}\varepsilon^{-1}
+           \sum_{\lambda t<k\le(\lambda+\varepsilon)t}\frac{(-1)^k}{k!}\lambda^k\varphi^{(k)}(\lambda).
+  \end{equation}
+
+  \example{Решения системы дифф.\ уравнений}
+  Пусть $\symbfup{v}(\symbfup{x},\symbf{\alpha})$~--- параметризованное векторное поле
+  ($\symbfup{x}\in U$, $\symbf{\alpha}\in A$), где~$U$~--- область в~$\mathbb{R}^n$
+  и $A$ --- область в~$\mathbb{R}^m$. Предположим, что~$\symbfup{v}$ принадлежит классу
+  $C^k$ как функция $(\symbfup{x},\symbf{\alpha})$ для некоторого $k\ge2$.
+  Рассмотрим систему дифференциальных уравнений в~$U$:
+  \begin{equation}\label{eq:#1ODE}
+    \dot{\symbfup{x}}=\symbfup{v}(\symbfup{x},\symbf{\alpha}),\quad\symbfup{x}\in U.
+  \end{equation}
+  Зафиксируем начальную точку $\symbfup{p}_0$ в $U$ и предположим, что
+  $\symbfup{v}(\symbfup{p}_0, \symbf{\alpha}_0)\ne0$. Тогда для достаточно малых $t$, $|\symbfup{p}-\symbfup{p}_0|$ и
+  $|\symbf{\alpha}-\symbf{\alpha_0}|$ у системы~\eqref{eq:#1ODE} существует единственное
+  решение~ $\symbfup{x}_{\symbf{\alpha}}(t)$, удовлетворяющее начальному условию $\symbfup{x}_{\symbf{\alpha}}(0)=\symbfup{p}$,
+  и это решение принадлежит классу $C^k$ по~$t$, $\symbfup{p}$ и~$\symbf{\alpha}$.
+
+  \example{Формула Стирлинга}
+  \begin{equation}
+    \Gamma(z) \sim e^{-z}z^{z−1/2}\sqrt{2\pi}\left[1+\frac{1}{12z}+\frac{1}{288z^2}-\frac{139}{51840z^3}+\dotsb\right],\quad
+      \text{$z\to\infty$ при $\mathopen|\arg z\mathclose|<\pi$.}
+  \end{equation}
+
+  \example{Кривые Безье}
+  Для точек $z_1$, $z_2$, $z_3$, $z_4$ в $\mathbb{C}$ кривая Безье с контрольными точками $z_1$, $z_2$, $z_3$, $z_4$
+  определяется равенством
+  \begin{equation*}
+    z(t) \mathrel{∶=} (1−t)^3z_1+3(1−t)^2tz_2+3(1−t)t^2z_3+t^3z4,\quad 0\le t\le 1.
+  \end{equation*}
+  Так как $(1−t)^3+3(1−t)^2t+3(1−t)t^2+t^3=(1-t+t)^3=1$, и все слагаемые положительные при $0\le t\le1$, $z(t)$
+  является выпуклой комбинацией четырех точек $z_k$. Следовательно, кривая~$z(t)$ лежит в их выпуклой оболочке.
+  При изменении~$t$ между~$0$ и~$1$ кривая движется от точки~$z_1$ к точке~$z_4$, при этом начальное направление
+  движения есть $z_2−z_1$, а конечное~--- $z_4−z_3$.
+
+  \example{Уравнения Максвелла}
+  \begin{align*}
+    \symbfup{B}'&=−c\nabla\times\symbfup{E},\\
+    \symbfup{E}'&=c\nabla\times\symbfup{B}−4\pi\symbfup{J}.
+  \end{align*}
+
+  \example{Теорема о вычетах}
+  Пусть функция $f$ голоморфна в области $G$ всюду, за исключением изолированного множества особых
+  точек $a_1$, $a_2$,\dots, $a_m$.
+  Пусть $\gamma$ --- спрямляемая кривая в $G$, не проходящая ни через одну из точек $a_k$, и пусть
+  $\gamma\approx0$ в $G$. Тогда
+  \begin{equation*}
+    \frac{1}{2\pi i}\int_\gamma f=\sum_{k=1}^m n(\gamma;a_k)\Res(f;a_k).
+  \end{equation*}
+
+  \example{Принцип максимума модуля}
+  Пусть $G$ --- ограниченное открытое подмножество $\mathbb{C}$, и пусть $f$ --- функция, непрерывная на $\overline{G}$
+  и голоморфная в $G$. Тогда
+  \begin{equation*}
+    \max\{|f(z)|\colon z\in\overline{G}\}=\max\{|f(z)|\colon z\in\partial G\}.
+  \end{equation*}
+
+  \example{Тождество Якоби}
+  Определим тета-функцию $\theta$ равенством
+  \begin{equation*}
+    \theta(t) = \sum_{n=-\infty}^\infty\exp(-\pi n^2t),\quad t>0.
+  \end{equation*}
+  Тогда
+  \begin{equation*}
+    \theta(t)=t^{-1/2}\theta(1/t).
+  \end{equation*}
+}
+
+\clearpage
+\setmainfont{CMU Serif}
+\setmathfont[version=lm,mathrm=sym]{Latin Modern Math}
+\mathversion{lm}
+\begin{latexcode}
+\setmainfont{CMU Serif}
+\setmathfont{Latin Modern Math}
+\end{latexcode}
+\small
+\mathsamplerus{lm}
+
+\clearpage
+\setcounter{equation}{0}
+\setmainfont{STIX Two Text}
+\setmathfont[version=stix2,mathrm=sym]{STIX Two Math}
+\mathversion{stix2}
+\begin{latexcode}
+\setmainfont{STIX Two Text}
+\setmathfont{STIX Two Math}
+\end{latexcode}
+\small
+\mathsamplerus{stix2}
+
+\clearpage
+\setcounter{equation}{0}
+\setmainfont{Erewhon}
+\setmathfont[version=erewhon,mathrm=sym]{Erewhon Math}
+\mathversion{erewhon}
+\begin{latexcode}
+\setmainfont{Erewhon}
+\setmathfont{Erewhon Math}
+\end{latexcode}
+\small
+\mathsamplerus{erewhon}
+
+\clearpage
+\setcounter{equation}{0}
+\setmainfont{XITS}
+\setmathfont[version=xits,mathrm=sym]{XITS Math}
+\mathversion{xits}
+\begin{latexcode}
+\setmainfont{XITS}
+\setmathfont{XITS Math}
+\end{latexcode}
+\small
+\mathsamplerus{xits}
+
+\clearpage
+\setcounter{equation}{0}
+\setmainfont{Libertinus Serif}
+\setmathfont[version=libertinus,mathrm=sym]{Libertinus Math}
+\mathversion{libertinus}
+\begin{latexcode}
+\setmainfont{Libertinus Serif}
+\setmathfont{Libertinus Math}
+\end{latexcode}
+\small
+\mathsamplerus{libertinus}
+
+\clearpage
+\setcounter{equation}{0}
+\setmainfont{EB Garamond}
+\setmathfont[version=garamond,mathrm=sym]{Garamond Math}
+\mathversion{garamond}
+\begin{latexcode}
+\setmainfont{EB Garamond}
+\setmathfont{Garamond Math}
+\end{latexcode}
+\small
+\mathsamplerus{garamond}
+
+\clearpage
+\setcounter{equation}{0}
+\setmainfont{Fira Sans}
+\setmathfont[version=fira,mathrm=sym]{Fira Math}
+\mathversion{fira}
+\begin{latexcode}
+\setmainfont{Fira Sans}
+\setmathfont{Fira Math}
+\end{latexcode}
+\small
+\mathsamplerus{fira}
+
+\clearpage
+\setcounter{equation}{0}
+\setmainfont[Scale=0.95]{DejaVu Serif}
+\setmathfont[Scale=0.95,version=dejavu,mathrm=sym]{TeX Gyre DejaVu Math}
+\mathversion{dejavu}
+\begin{latexcode}
+\setmainfont{DejaVuSerif}
+\setmathfont{TeX Gyre DejaVu Math}
+\end{latexcode}
+\small
+\mathsamplerus{dejavu}
+
+\clearpage
+\setcounter{equation}{0}
+\setmainfont{Times New Roman}
+\setmathfont[version=termes,mathrm=sym]{TeX Gyre Termes Math}
+\mathversion{termes}
+\begin{latexcode}
+\setmainfont{Times New Roman}
+\setmathfont{TeX Gyre Termes Math}
+\end{latexcode}
+\small
+\mathsamplerus{termes}
+
+\clearpage
+\setcounter{equation}{0}
+\setmainfont{Palatino Linotype}
+\setmathfont[version=pagella,mathrm=sym]{TeX Gyre Pagella Math}
+\mathversion{pagella}
+\begin{latexcode}
+\setmainfont{Palatino Linotype}
+\setmathfont{TeX Gyre Pagella Math}
+\end{latexcode}
+\small
+\mathsamplerus{pagella}
+
+\clearpage
+\setcounter{equation}{0}
+\setmainfont{Palatino Linotype}
+\setmathfont[version=asana,mathrm=sym]{Asana Math}
+\mathversion{asana}
+\begin{latexcode}
+\setmainfont{Palatino Linotype}
+\setmathfont{Asana Math}
+\end{latexcode}
+\small
+\mathsamplerus{asana}
+
+\clearpage
+\setcounter{equation}{0}
+\setmainfont{Century Schoolbook}
+\setmathfont[version=schola,mathrm=sym]{TeX Gyre Schola Math}
+\mathversion{schola}
+\begin{latexcode}
+\setmainfont{Century Schoolbook}
+\setmathfont{TeX Gyre Schola Math}
+\end{latexcode}
+\small
+\mathsamplerus{schola}
+
+\clearpage
+\setcounter{equation}{0}
+\setmainfont{Bookman Old Style}
+\setmathfont[version=bonum,mathrm=sym]{TeX Gyre Bonum Math}
+\mathversion{bonum}
+\begin{latexcode}
+\setmainfont{Bookman Old Style}
+\setmathfont{TeX Gyre Bonum Math}
+\end{latexcode}
+\small
+\mathsamplerus{bonum}
+
+\clearpage
+\setcounter{equation}{0}
+\setmainfont{Cambria}
+\setmathfont[version=cambria,mathrm=sym]{Cambria Math}
+\mathversion{cambria}
+\begin{latexcode}
+\setmainfont{Cambria}
+\setmathfont{Cambria Math}
+\end{latexcode}
+\small
+\mathsamplerus{cambria}
+
+
 \end{document}
 
