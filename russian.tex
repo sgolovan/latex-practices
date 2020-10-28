@@ -55,7 +55,7 @@
 
 \title{\LaTeX\ в 2020 году}
 \author{Сергей Головань}
-%\date{22 мая 2017 г.}
+%\date{}
 
 \renewcommand\topfraction{1}
 \renewcommand\textfraction{0}
@@ -80,7 +80,7 @@
 документов. Совершенствуются вспомогательные средства (для обработки
 библиографии, создания предметных указателей). В данной заметке я хочу
 перечислить несколько своих решений о применении того или иного инструмента,
-которые мне представляются разумными в 2017 году.
+которые мне представляются разумными в 2020 году.
 
 \section{Кодировка: UTF-8}
 Я познакомился с \LaTeX, будучи пользователем операционной системы MS DOS,
@@ -719,6 +719,7 @@ Control Systems). Их изобрели для работы с исходным 
 который не имеет засечек и, соответственно, хорошо подходит вместе с текстовым шрифтом \emph{Fira Sans}
 или \emph{FiraGO} для презентаций, сверстанных в \package{beamer}. 
 
+\renewcommand{\theHequation}{\thepage.\arabic{equation}}
 \newcommand{\Res}{\operatorname{Res}}
 \newcommand{\example}[1]{\par\medskip\noindent\textbf{#1:}\enskip\ignorespaces}
 \newcommand{\mathsamplerus}[1]{%
@@ -797,6 +798,7 @@ Control Systems). Их изобрели для работы с исходным 
 }
 
 \clearpage
+\setcounter{equation}{0}
 \setmainfont{CMU Serif}
 \setmathfont[version=lm,mathrm=sym]{Latin Modern Math}
 \mathversion{lm}
