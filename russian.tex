@@ -40,6 +40,9 @@
 \fancyhead{}
 \fancyfoot[C]{\fontspec{STIX Two Text}\thepage}
 
+\usepackage{titlesec}
+\titleformat{\subsection}{\fontspec{STIX Two Text}\large\bfseries}{\thesubsection}{1em}{}
+
 \usepackage[colorlinks,allcolors=blue,hyperindex=false]{hyperref}
 \newcommand\foothref[2]{%
   \href{#1}{#2}\footnote{\url{#1}}%
@@ -760,7 +763,7 @@ Control Systems). Их изобрели для работы с исходным 
   Для точек $z_1$, $z_2$, $z_3$, $z_4$ в $\mathbb{C}$ кривая Безье с контрольными точками $z_1$, $z_2$, $z_3$, $z_4$
   определяется равенством
   \begin{equation*}
-    z(t) \mathrel{∶=} (1−t)^3z_1+3(1−t)^2tz_2+3(1−t)t^2z_3+t^3z4,\quad 0\le t\le 1.
+    z(t) \mathrel{∶=} (1−t)^3z_1+3(1−t)^2tz_2+3(1−t)t^2z_3+t^3z_4,\quad 0\le t\le 1.
   \end{equation*}
   Так как $(1−t)^3+3(1−t)^2t+3(1−t)t^2+t^3=(1-t+t)^3=1$, и все слагаемые положительные при $0\le t\le1$, $z(t)$
   является выпуклой комбинацией четырех точек $z_k$. Следовательно, кривая~$z(t)$ лежит в их выпуклой оболочке.
@@ -801,6 +804,7 @@ Control Systems). Их изобрели для работы с исходным 
 }
 
 \clearpage
+\subsection{CMU Serif \& Latin Modern Math}
 \setcounter{equation}{0}
 \setmainfont{CMU Serif}
 \setmathfont[version=lm,mathrm=sym]{Latin Modern Math}
@@ -813,6 +817,7 @@ Control Systems). Их изобрели для работы с исходным 
 \mathsamplerus{lm}
 
 \clearpage
+\subsection{STIX Two Text \& STIX Two Math}
 \setcounter{equation}{0}
 \setmainfont{STIX Two Text}
 \setmathfont[version=stix2,mathrm=sym]{STIX Two Math}
@@ -825,6 +830,7 @@ Control Systems). Их изобрели для работы с исходным 
 \mathsamplerus{stix2}
 
 \clearpage
+\subsection{Erewhon \& Erewhon Math}
 \setcounter{equation}{0}
 \setmainfont{Erewhon}
 \setmathfont[version=erewhon,mathrm=sym]{Erewhon Math}
@@ -837,6 +843,7 @@ Control Systems). Их изобрели для работы с исходным 
 \mathsamplerus{erewhon}
 
 \clearpage
+\subsection{XITS \& XITS Math}
 \setcounter{equation}{0}
 \setmainfont{XITS}
 \setmathfont[version=xits,mathrm=sym]{XITS Math}
@@ -849,6 +856,7 @@ Control Systems). Их изобрели для работы с исходным 
 \mathsamplerus{xits}
 
 \clearpage
+\subsection{Libertinus Serif \& Libertinus Math}
 \setcounter{equation}{0}
 \setmainfont{Libertinus Serif}
 \setmathfont[version=libertinus,mathrm=sym]{Libertinus Math}
@@ -861,6 +869,7 @@ Control Systems). Их изобрели для работы с исходным 
 \mathsamplerus{libertinus}
 
 \clearpage
+\subsection{EB Garamond \& Garamond Math}
 \setcounter{equation}{0}
 \setmainfont{EB Garamond}
 \setmathfont[version=garamond,mathrm=sym]{Garamond Math}
@@ -873,6 +882,7 @@ Control Systems). Их изобрели для работы с исходным 
 \mathsamplerus{garamond}
 
 \clearpage
+\subsection{Fira Sans \& Fira Math}
 \setcounter{equation}{0}
 \setmainfont{Fira Sans}
 \setmathfont[version=fira,mathrm=sym]{Fira Math}
@@ -885,18 +895,20 @@ Control Systems). Их изобрели для работы с исходным 
 \mathsamplerus{fira}
 
 \clearpage
+\subsection{DejaVu Serif \& TeX Gyre DejaVu Math}
 \setcounter{equation}{0}
-\setmainfont[Scale=0.95]{DejaVu Serif}
-\setmathfont[Scale=0.95,version=dejavu,mathrm=sym]{TeX Gyre DejaVu Math}
+\setmainfont[Scale=0.92]{DejaVu Serif}
+\setmathfont[Scale=0.92,version=dejavu,mathrm=sym]{TeX Gyre DejaVu Math}
 \mathversion{dejavu}
 \begin{latexcode}
-\setmainfont{DejaVuSerif}
+\setmainfont{DejaVu Serif}
 \setmathfont{TeX Gyre DejaVu Math}
 \end{latexcode}
 \small
 \mathsamplerus{dejavu}
 
 \clearpage
+\subsection{Times New Roman \& TeX Gyre Termes Math}
 \setcounter{equation}{0}
 \setmainfont{Times New Roman}
 \setmathfont[version=termes,mathrm=sym]{TeX Gyre Termes Math}
@@ -909,6 +921,7 @@ Control Systems). Их изобрели для работы с исходным 
 \mathsamplerus{termes}
 
 \clearpage
+\subsection{Palatino Linotype \& TeX Gyre Pagella Math}
 \setcounter{equation}{0}
 \setmainfont{Palatino Linotype}
 \setmathfont[version=pagella,mathrm=sym]{TeX Gyre Pagella Math}
@@ -921,6 +934,7 @@ Control Systems). Их изобрели для работы с исходным 
 \mathsamplerus{pagella}
 
 \clearpage
+\subsection{Palatino Linotype \& Asana Math}
 \setcounter{equation}{0}
 \setmainfont{Palatino Linotype}
 \setmathfont[version=asana,mathrm=sym]{Asana Math}
@@ -933,6 +947,7 @@ Control Systems). Их изобрели для работы с исходным 
 \mathsamplerus{asana}
 
 \clearpage
+\subsection{Century Schoolbook \& TeX Gyre Schola Math}
 \setcounter{equation}{0}
 \setmainfont{Century Schoolbook}
 \setmathfont[version=schola,mathrm=sym]{TeX Gyre Schola Math}
@@ -945,9 +960,10 @@ Control Systems). Их изобрели для работы с исходным 
 \mathsamplerus{schola}
 
 \clearpage
+\subsection{Bookman Old Style \& TeX Gyre Bonum Math}
 \setcounter{equation}{0}
-\setmainfont{Bookman Old Style}
-\setmathfont[version=bonum,mathrm=sym]{TeX Gyre Bonum Math}
+\setmainfont[Scale=0.97]{Bookman Old Style}
+\setmathfont[Scale=0.97,version=bonum,mathrm=sym]{TeX Gyre Bonum Math}
 \mathversion{bonum}
 \begin{latexcode}
 \setmainfont{Bookman Old Style}
@@ -957,6 +973,7 @@ Control Systems). Их изобрели для работы с исходным 
 \mathsamplerus{bonum}
 
 \clearpage
+\subsection{Cambria \& Cambria Math}
 \setcounter{equation}{0}
 \setmainfont{Cambria}
 \setmathfont[version=cambria,mathrm=sym]{Cambria Math}
@@ -967,7 +984,6 @@ Control Systems). Их изобрели для работы с исходным 
 \end{latexcode}
 \small
 \mathsamplerus{cambria}
-
 
 \end{document}
 
