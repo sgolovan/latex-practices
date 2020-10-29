@@ -448,6 +448,7 @@ $\verb|---|\mapsto\text{---}$ или $\verb|<<>>|\mapsto\text{<<>>}$)
 появилось, когда стало ясно, что
 \exe{makeindex} не удаётся адаптировать к многоязычным документам.
 
+\looseness=-1
 \exe{xindy} --- очень мощная программа, она позволяет задавать правила
 сортировки списков и объединения их в группы (по первой букве или другими
 способами) очень гибко. Кроме того, с ней не возникает никаких проблем при работе
@@ -555,6 +556,11 @@ $\verb|---|\mapsto\text{---}$ или $\verb|<<>>|\mapsto\text{<<>>}$)
 \end{figure}
 можно увидеть, как именно программируется
 предметный указатель в тексте, и как он подключается в два прохода.
+
+Следует сказать, что документирована \exe{xindy} не слишком хорошо, да и
+работает \foothref{https://tex.stackexchange.com/questions/566505/xindy-with-texmaker-and-miktex-on-ubuntu-yield-call-to-xindy-failed-error-code}{не всегда}. Поэтому я потихоньку начинаю смотреть в сторону
+других систем подготовки указателей, например \exe{xindex}. Он, впрочем,
+пока по возможностям сравниться с \exe{xindy} не может.
 
 \section{Система сборки: latexmk}
 Строго говоря, система сборки нужна не всегда. Для случаев одиночных коротких
@@ -982,6 +988,32 @@ Control Systems). Их изобрели для работы с исходным 
 \end{latexcode}
 \small
 \mathsamplerus{cambria}
+
+\clearpage
+\subsection{PT Serif \& Cambria Math}
+\setcounter{equation}{0}
+\setmainfont{PT Serif}
+\setmathfont[Scale=MatchUppercase,version=pt,mathrm=sym]{Cambria Math}
+\mathversion{pt}
+\begin{latexcode}
+\setmainfont{PT Serif}
+\setmathfont[Scale=MatchUppercase]{Cambria Math}
+\end{latexcode}
+\small
+\mathsamplerus{pt}
+
+\clearpage
+\subsection{PT Astra Serif \& Cambria Math}
+\setcounter{equation}{0}
+\setmainfont{PT Astra Serif}
+\setmathfont[version=astra,mathrm=sym]{Cambria Math}
+\mathversion{astra}
+\begin{latexcode}
+\setmainfont{PT Astra Serif}
+\setmathfont{Cambria Math}
+\end{latexcode}
+\small
+\mathsamplerus{astra}
 
 \end{document}
 
