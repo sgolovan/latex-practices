@@ -43,6 +43,21 @@
 \usepackage{titlesec}
 \titleformat{\subsection}{\fontspec{STIX Two Text}\large\bfseries}{\thesubsection}{1em}{}
 
+\usepackage{titletoc}
+\titlecontents{section}
+[2.8em]
+{\smallskip}
+{\contentslabel{1.8em}}
+{\hspace*{-1.8em}}
+{\titlerule*[1pc]{.}\contentspage}
+
+\titlecontents{subsection}
+[5.6em]
+{}
+{\contentslabel{2.8em}}
+{\hspace*{-2.8em}}
+{\titlerule*[1pc]{.}\contentspage}
+
 \usepackage[colorlinks,allcolors=blue,hyperindex=false]{hyperref}
 \newcommand\foothref[2]{%
   \href{#1}{#2}\footnote{\url{#1}}%
@@ -69,6 +84,7 @@
 \maketitle
 \tableofcontents
 
+\clearpage
 \section{Введение}
 Система верстки \TeX\index{tex@\TeX} появилась в конце семидесятых годов прошлого века,
 надстройка \LaTeX\index{latex@\LaTeX} --- в 1985 году, и с тех пор является распространённым
