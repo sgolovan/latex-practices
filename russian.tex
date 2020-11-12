@@ -81,7 +81,11 @@
 \setcounter{totalnumber}{5}
 
 \begin{document}
+\pdfbookmark[1]{LaTEX в 2020 году}{title}%
+\vspace{-\baselineskip}%
 \maketitle
+\pdfbookmark[1]{Содержание}{toc}%
+\vspace{-\baselineskip}%
 \tableofcontents
 
 \clearpage
@@ -744,7 +748,7 @@ Control Systems). Их изобрели для работы с исходным 
 либо включены в стандартный набор шрифтов Microsoft Windows. Особняком стоит шрифт \emph{Fira Math},
 который не имеет засечек и, соответственно, хорошо подходит вместе с текстовым шрифтом \emph{Fira Sans}
 или \emph{FiraGO} для презентаций, свёрстанных в \package{beamer}. В качестве текстового шрифта к нему вполне подходят
-также \emph{PT Sans} и \emph{Alegreya Sans}.
+также \emph{PT Sans}, \emph{Alegreya Sans} и \emph{Source Sans Pro} (в меньшей степени).
 
 \renewcommand{\theHequation}{\thepage.\arabic{equation}}
 \newcommand{\Res}{\operatorname{Res}}
@@ -916,45 +920,6 @@ Control Systems). Их изобрели для работы с исходным 
 \mathsamplerus{garamond}
 
 \clearpage
-\subsection{Fira Sans \& Fira Math}
-\setcounter{equation}{0}
-\setmainfont{Fira Sans}
-\setmathfont[version=fira,mathrm=sym]{Fira Math}
-\mathversion{fira}
-\begin{latexcode}
-\setmainfont{Fira Sans}
-\setmathfont{Fira Math}
-\end{latexcode}
-\small
-\mathsamplerus{fira}
-
-\clearpage
-\subsection{Alegreya Sans \& Fira Math}
-\setcounter{equation}{0}
-\setmainfont[Scale=1.15,Numbers=Uppercase]{Alegreya Sans}
-\setmathfont[version=alegreya,mathrm=sym]{Fira Math}
-\mathversion{alegreya}
-\begin{latexcode}
-\setmainfont[Scale=1.15,Numbers=Uppercase]{Alegreya Sans}
-\setmathfont{Fira Math}
-\end{latexcode}
-\small
-\mathsamplerus{alegreya}
-
-\clearpage
-\subsection{PT Sans \& Fira Math}
-\setcounter{equation}{0}
-\setmainfont[Scale=1.05]{PT Sans}
-\setmathfont[version=ptsans,mathrm=sym]{Fira Math}
-\mathversion{ptsans}
-\begin{latexcode}
-\setmainfont[Scale=1.05]{PT Sans}
-\setmathfont{Fira Math}
-\end{latexcode}
-\small
-\mathsamplerus{ptsans}
-
-\clearpage
 \subsection{DejaVu Serif \& TeX Gyre DejaVu Math}
 \setcounter{equation}{0}
 \setmainfont[Scale=0.92]{DejaVu Serif}
@@ -1070,6 +1035,71 @@ Control Systems). Их изобрели для работы с исходным 
 \end{latexcode}
 \small
 \mathsamplerus{astra}
+
+\clearpage
+\subsection{Fira Sans \& Fira Math}
+\setcounter{equation}{0}
+\setmainfont{Fira Sans}
+\setmathfont[version=fira,mathrm=sym]{Fira Math}
+\mathversion{fira}
+\begin{latexcode}
+\setmainfont{Fira Sans}
+\setmathfont{Fira Math}
+\end{latexcode}
+\small
+\mathsamplerus{fira}
+
+\clearpage
+\subsection{Alegreya Sans \& Fira Math}
+\setcounter{equation}{0}
+\setmainfont[Scale=1.15,Numbers=Uppercase]{Alegreya Sans}
+\setmathfont[version=alegreya,mathrm=sym]{Fira Math}
+\mathversion{alegreya}
+\begin{latexcode}
+\setmainfont[Scale=1.15,Numbers=Uppercase]{Alegreya Sans}
+\setmathfont{Fira Math}
+\end{latexcode}
+\small
+\mathsamplerus{alegreya}
+
+\clearpage
+\subsection{PT Sans \& Fira Math}
+\setcounter{equation}{0}
+\setmainfont[Scale=1.05]{PT Sans}
+\setmathfont[version=ptsans,mathrm=sym]{Fira Math}
+\mathversion{ptsans}
+\begin{latexcode}
+\setmainfont[Scale=1.05]{PT Sans}
+\setmathfont{Fira Math}
+\end{latexcode}
+\small
+\mathsamplerus{ptsans}
+
+\clearpage
+\subsection{Source Sans Pro \& Fira Math}
+\setcounter{equation}{0}
+\setmainfont[Scale=1.05]{Source Sans Pro}
+\setmathfont[version=sourcesans,mathrm=sym]{Fira Math}
+\mathversion{sourcesans}
+\begin{latexcode}
+\setmainfont[Scale=1.05]{Source Sans Pro}
+\setmathfont{Fira Math}
+\end{latexcode}
+\small
+\mathsamplerus{sourcesans}
+
+\clearpage
+\subsection{Arial \& Fira Math}
+\setcounter{equation}{0}
+\setmainfont{Arial}
+\setmathfont[version=arial,mathrm=sym]{Fira Math}
+\mathversion{arial}
+\begin{latexcode}
+\setmainfont{Arial}
+\setmathfont{Fira Math}
+\end{latexcode}
+\small
+\mathsamplerus{arial}
 
 \end{document}
 
