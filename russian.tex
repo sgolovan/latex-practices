@@ -743,7 +743,8 @@ Control Systems). Их изобрели для работы с исходным 
 которых нашелся подходящий текстовый шрифт, поддерживающий кириллицу. Все шрифты в примерах либо свободные,
 либо включены в стандартный набор шрифтов Microsoft Windows. Особняком стоит шрифт \emph{Fira Math},
 который не имеет засечек и, соответственно, хорошо подходит вместе с текстовым шрифтом \emph{Fira Sans}
-или \emph{FiraGO} для презентаций, свёрстанных в \package{beamer}. 
+или \emph{FiraGO} для презентаций, свёрстанных в \package{beamer}. В качестве текстового шрифта к нему вполне подходят
+также \emph{PT Sans} и \emph{Alegreya Sans}.
 
 \renewcommand{\theHequation}{\thepage.\arabic{equation}}
 \newcommand{\Res}{\operatorname{Res}}
@@ -926,6 +927,32 @@ Control Systems). Их изобрели для работы с исходным 
 \end{latexcode}
 \small
 \mathsamplerus{fira}
+
+\clearpage
+\subsection{Alegreya Sans \& Fira Math}
+\setcounter{equation}{0}
+\setmainfont[Scale=1.15,Numbers=Uppercase]{Alegreya Sans}
+\setmathfont[version=alegreya,mathrm=sym]{Fira Math}
+\mathversion{alegreya}
+\begin{latexcode}
+\setmainfont[Scale=1.15,Numbers=Uppercase]{Alegreya Sans}
+\setmathfont{Fira Math}
+\end{latexcode}
+\small
+\mathsamplerus{alegreya}
+
+\clearpage
+\subsection{PT Sans \& Fira Math}
+\setcounter{equation}{0}
+\setmainfont[Scale=1.05]{PT Sans}
+\setmathfont[version=ptsans,mathrm=sym]{Fira Math}
+\mathversion{ptsans}
+\begin{latexcode}
+\setmainfont[Scale=1.05]{PT Sans}
+\setmathfont{Fira Math}
+\end{latexcode}
+\small
+\mathsamplerus{ptsans}
 
 \clearpage
 \subsection{DejaVu Serif \& TeX Gyre DejaVu Math}
