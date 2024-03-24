@@ -188,11 +188,12 @@ PGF/Ti\emph{k}z \parencite{ctan-pgf} и \package{pgfplots} \parencite{ctan-pgfpl
 \softname{Matplotlib} \parencite{site-matplotlib}), так что нужда в \package{psfrag}
 отпала. А поскольку сам по себе формат DVI непереносим (иллюстрации не
 внедряются, шрифты не внедряются), то получается, что лучшим форматом на данный
-момент является PDF. В этом формате выдают результат \pdfTeX, \XeTeX, \LuaTeX.
+момент является PDF. В этом формате выдают результат \pdfTeX, \LuaTeX\ (непосредственно)
+и \XeTeX\ (через промежуточный вывод в расширенный формат DVI).
 Дополнительным преимуществом компиляторов, выводящим результат непосредственно в PDF,
 является поддержка микротипографических расширений с помощью пакета
-\package{microtype} \parencite{ctan-microtype}.
-
+\package{microtype} \parencite{ctan-microtype}, все возможности которого реализованы в
+\pdfTeX\ и \LuaTeX, и только малая часть~--- в \XeTeX.
 
 Так как я предпочитаю новые документы создавать в кодировке UTF-8, то хорошо было
 бы, чтобы компилятор мог с ней работать. \pdfTeX\ работает с текстом как с потоком
@@ -244,7 +245,8 @@ PGF/Ti\emph{k}z \parencite{ctan-pgf} и \package{pgfplots} \parencite{ctan-pgfpl
 очень радует, так как всё-таки \package{unicode-math} в сочетании со шрифтами
 Computer Modern (или их клонами) пока еще выглядит не вполне хорошо.
 Также старым способом приходится пользоваться для набора, скажем, шрифтом
-Euler, который мне тоже нравится. Сам процесс набора с помощью \package{unicode-math}
+Euler, который мне тоже нравится (время не стоит на месте, уже появился шрифт Euler Math,
+работающий с \package{unicode-math}, см. раздел~\ref{sec:euler}). Сам процесс набора с помощью \package{unicode-math}
 мало отличается от обычного~--- те же команды. Но некоторые приятные особенности всё-таки
 есть. В частности, не нужно больше использовать разрозненный набор команд
 печати всевозможных полужирных вариантов начертания: \lcmd{\mathbf}, \lcmd{\boldkey},
@@ -257,61 +259,6 @@ Euler, который мне тоже нравится. Сам процесс н
 применяю \package{unicode-math} для гарнитур вроде \emph{STIX Two Math} или
 \emph{Old Standard Math}.
 
-\section{Пакет локализации: babel}
-Сейчас существует два распространённых пакета, которые отвечают за
-локализацию документа~---
-\package{babel} \parencite{ctan-babel} и
-\package{polyglossia} \parencite{ctan-polyglossia}.\index{локализация}
-Первый из них это старый заслуженный пакет, работающий со всеми
-вариантами \TeX\ (поддержка динамической загрузки правил для
-переноса слов, которая применяется в \LuaTeX, появилась относительно
-недавно). Второй~--- молодой пакет, работающий в \XeLaTeX\ и в \LuaLaTeX.
-При этом \package{polyglossia} не поддерживает шрифты в старых кодировках,
-например в традиционной кириллической кодировке T2A. С другой стороны
-пользовательский интерфейс у \package{polyglossia} мне нравится чуть больше,
-чем у \package{babel}, он ближе к интерфейсу пакета \package{fontspec}
-выбора шрифтов, который я рассмотрю позже. На рисунках~\ref{babel1}--\ref{polygl1}
-приведены примеры подключения этих пакетов.
-\begin{figure}[tp]
-\begin{latexcode}
-\usepackage[T2A]{fontenc}
-\usepackage[utf8]{luainputenc}
-\usepackage[english,russian]{babel}
-\end{latexcode}
-\caption{Подключение пакета \package{babel} для работы со старой кодировкой шрифта}\label{babel1}
-\end{figure}
-\begin{figure}[tp]
-\begin{latexcode}
-\usepackage[english,russian]{babel}
-\end{latexcode}
-\caption{Подключение пакета \package{babel} для работы с новой юникодной кодировкой шрифта}\label{babel2}
-\end{figure}
-\begin{figure}[tp]
-\begin{latexcode}
-\usepackage{polyglossia}
-\setmainlanguage{russian}
-\setotherlanguage{english}
-\end{latexcode}
-\caption{Подключение пакета \package{polyglossia}}\label{polygl1}
-\end{figure}
-
-Какой же из них выбрать? В пакете \package{polyglossia} до недавнего времени
-существовал досадный \emph{баг с непереключением шрифта} при переходе в математический
-режим или при печати внеполосных элементов, таких как номера страниц,
-проявляющийся в русскоязычных или греческих текстах \parencite{bug-polyglossia-24}.
-{\itshape Если текст набирался курсивом, то номера выносных формул
-\begin{equation}
-e^x=\sum_{n=0}^\infty\frac{x^n}{n!},\tag*{\textit{(1)}}
-\end{equation}
-увы, тоже получались курсивными. А также номера страниц и сноски, попавшие
-в разрыв с курсивом до и после него.}
-
-Этот баг был исправлен в конце 2019 года, исправление попало в обновления
-TeXLive 2019, но в версии TeXLive, которая входит в Debian stable, он всё ещё
-присутствует.
-Поэтому на данный момент я выбираю пакет \package{babel}, но подумываю о переключении
-на \package{polyglossia} после выхода новой версии Debian.
-
 \section{Шрифты: fontspec}
 Подключение шрифтов к оригинальному \TeX\ всегда было делом непростым.
 То есть, конечно же, были шрифты, написанные на \METAFONT\ специально для
@@ -323,9 +270,11 @@ TeXLive 2019, но в версии TeXLive, которая входит в Debia
 оригинальному шрифтовому файлу.
 
 \XeTeX\ и \LuaTeX\ позволяют исключить все эти этапы и работают
-непосредственно со шрифтами в форматах TTF и OTF (впрочем, старые
-шрифты им всё ещё доступны, так что переписывать все старые документы для
-их обработки \LuaLaTeX\ не придётся). Для удобства подключения шрифтов
+непосредственно со шрифтами в форматах TTF и OTF. И несмотря на то, что старые
+шрифты им также доступны, таблицы переносов в \XeTeX\ и \LuaTeX\ работают только
+совместно с юникодными шрифтами, так что если мне нужен старый шрифт вроде гарнитуры
+Лиературная, который в бесплатном виде доступен только в формате Type1, то приходится
+возвращаться к \pdfLaTeX. Для удобства подключения современных шрифтов
 предназначен пакет \package{fontspec} \parencite{ctan-fontspec}.
 На рис.~\ref{fontspec1}
 \begin{figure}[tp]
@@ -346,10 +295,43 @@ TeXLive 2019, но в версии TeXLive, которая входит в Debia
 $\mbox{\lcmd{---}}\mapsto\text{---}$ или $\mbox{\lcmd{<<>>}}\mapsto\text{<<>>}$)
 и ещё массу всяких нужных и не очень.
 
-Поэтому в данном случае мой выбор такой: Если не требуется использование
-старых шрифтов, которые недоступны в формате OTF (например, бесплатный
-шрифт Литературной гарнитуры есть только в формате Type1), то я выбираю
-\package{fontspec} как средство управления шрифтами.
+Поэтому в данном случае выбирать особо не приходится: Пакет \package{fontspec}
+является единственным удобным средством выбора шрифтов для \LuaLaTeX. Если требуется использование
+старого шрифта, который недоступен в формате OTF/TTF, то я возвращаюсь на \pdfLaTeX.
+
+\section{Пакет локализации: babel}
+Сейчас существует два распространённых пакета, которые отвечают за
+локализацию документа~---
+\package{babel} \parencite{ctan-babel} и
+\package{polyglossia} \parencite{ctan-polyglossia}.\index{локализация}
+Первый из них это старый заслуженный пакет, работающий со всеми
+вариантами \TeX\ (поддержка динамической загрузки правил для
+переноса слов, которая применяется в \LuaTeX, появилась сравнительно
+недавно). Второй~--- более молодой пакет, работающий только в \XeLaTeX\ и в \LuaLaTeX.
+С другой стороны
+пользовательский интерфейс у \package{polyglossia} мне нравится чуть больше,
+чем у \package{babel}, он ближе к интерфейсу пакета \package{fontspec}
+выбора шрифтов. На рисунках~\ref{babel2}--\ref{polygl1}
+приведены примеры подключения этих пакетов.
+\begin{figure}[tp]
+\begin{latexcode}
+\usepackage[english,russian]{babel}
+\end{latexcode}
+\caption{Подключение пакета \package{babel} в \LuaLaTeX}\label{babel2}
+\end{figure}
+\begin{figure}[tp]
+\begin{latexcode}
+\usepackage{polyglossia}
+\setmainlanguage{russian}
+\setotherlanguage{english}
+\end{latexcode}
+\caption{Подключение пакета \package{polyglossia} в \LuaLaTeX}\label{polygl1}
+\end{figure}
+
+Какой же из них выбрать? Мне для работы (в основном с русским и английским языками)
+вполне подходят оба эти пакета. И я выбираю пакет \package{babel} только потому, что
+он мне более привычен. Ну и время от времени я все-таки пользуюсь \pdfLaTeX, а там
+выбора нет.
 
 \section{Библиография: biblatex и biber}
 Исторически первым инструментом для автоматического построения
@@ -633,8 +615,7 @@ $bibtex = 'biber %O %B'
 
 ...
 \end{shcode}
-\caption{Отрывок \file{Makefile} с использованием
-\exe{latexmk}}\label{latexmk3}
+\caption{Отрывок \file{Makefile} с использованием \exe{latexmk}}\label{latexmk3}
 \end{figure}
 
 \section{Средство для совместной работы: Git, Fossil}
@@ -645,16 +626,11 @@ $bibtex = 'biber %O %B'
 такие системы весьма удобны.
 
 В настоящее время существуют облачные (онлайновые) сервисы для совместной работы с
-документами в \LaTeX{}. Два примера:
-\begin{itemize}
-  \item \softname{Overleaf} \parencite{site-overleaf}
-  \item \softname{ShareLaTeX} \parencite{site-sharelatex}
-\end{itemize}
-Оба сервиса работают прямо в Интернет-браузере, не требуют установки дистрибутива
-\LaTeX{} на локальный компьютер. Некоторые интересные возможности их доступны только
-для платных подписчиков, скажем, собственно совместная работа в \softname{ShareLaTeX}.
-\softname{Overleaf} в этом смысле меньше ограничивает, но, например, бесплатным
-подписчикам не позволяется создавать закрытые совместные проекты, что иногда
+документами в \LaTeX{}. Наиболее известным является \softname{Overleaf} \parencite{site-overleaf}
+(его недавний главный конкурент \softname{ShareLaTeX} \parencite{site-sharelatex} с ним
+объединился). Сервис работает прямо в Интернет-браузере, не требует установки дистрибутива
+\LaTeX{} на локальный компьютер. Некоторые интересные его возможности доступны только
+для платных подписчиков, скажем, создание закрытых совместных проекты, что иногда
 хотелось бы. Ну и лично для меня неудобно то, что редактирование происходит в
 браузере, то есть приходится подстраиваться под местный текстовый редактор
 вместо того, чтобы пользоваться привычным мне. Ну и требование наличия довольно
@@ -684,15 +660,15 @@ Control Systems). Их изобрели для работы с исходным 
 хостинга или самостоятельно поддерживать), то он удобнее, так как формат самого
 репозитория --- база данных \softname{SQLite} \parencite{site-sqlite} в отличие от
 формата репозитория Git --- развесистого дерева поддиректорий с файлами. Соответственно,
-для него удобно создавать резервные копии, его можно размещать на каком-нибудь сетевом
-ресурсе вроде \softname{Dropbox} \parencite{site-dropbox},
+для него удобно создавать резервные копии, его можно размещать на каком-нибудь облачном
+ресурсе с общим доступом вроде \softname{Dropbox} \parencite{site-dropbox},
 \softname{OwnCloud} \parencite{site-owncloud} или \softname{Syncthing}
-\begin{otherlanguage}{english}\parencite{site-syncthing}\end{otherlanguage}\ --- своеобразный хостинг для бедных.
+\begin{otherlanguage}{english}\parencite{site-syncthing}\end{otherlanguage}.
 
 \section{Пример документа}
 В данном разделе приведу пример законченного документа, который можно скомпилировать
 с помощью \LuaLaTeX{}, \exe{biber} и \exe{upmendex}. Если рядом с данным документом
-разместить файл \file{latexmkrs} из примера на рисунке~\ref{latexmk2}, стилевой
+разместить файл \file{latexmkrc} из примера на рисунке~\ref{latexmk2}, стилевой
 файл \file{ruseng.ist} из примера на рисунке~\ref{upmendex1} для \exe{upmendex}, а также какой-нибудь
 файл \file{referencesfile.bib}, то
 сборку всего проекта можно будет осуществить одной командой \exe{latexmk}.
@@ -701,7 +677,7 @@ Control Systems). Их изобрели для работы с исходным 
 \documentclass{article}
 \usepackage{microtype}
 \usepackage{fontspec}
-\setmainfont{XITS}[Ligatures=TeX]
+\setmainfont{XITS}
 \usepackage{unicode-math}
 \setmathfont{XITS Math}
 \usepackage[english,russian]{babel}
@@ -826,14 +802,14 @@ Control Systems). Их изобрели для работы с исходным 
 }
 
 \clearpage
-\subsection{CMU Serif \& Latin Modern Math}
+\subsection{Cyrillic Modern \& Latin Modern Math}
 \setcounter{equation}{0}
-\setmainfont{CMU Serif}
+\setmainfont{Cyrillic Modern}[ItalicFont=nmti,BoldFont=nmbx]
 \setmathfont[version=lm,mathrm=sym]{Latin Modern Math}
 \mathversion{lm}
 \small
 \begin{latexcode}
-\setmainfont{CMU Serif}
+\setmainfont{Cyrillic Modern}[ItalicFont=nmti,BoldFont=nmbx]
 \setmathfont{Latin Modern Math}
 \end{latexcode}
 \mathsamplerus{lm}
@@ -1050,7 +1026,7 @@ Control Systems). Их изобрели для работы с исходным 
 
 \clearpage
 \normalsize
-\subsection{Spectral \& Euler Math}
+\subsection{Spectral \& Euler Math}\label{sec:euler}
 \setcounter{equation}{0}
 \setmainfont{Spectral}
 \setmathfont[version=euler,math-style=upright]{Euler Math}
