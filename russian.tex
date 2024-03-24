@@ -583,7 +583,7 @@ lethead_suffix  "}\\par\\nopagebreak"
 документов без оглавления, библиографии и т.~п. без нее вполне можно
 обойтись. А вот если библиография, предметный указатель, перекрёстные
 ссылки в документе есть, то система сборки, позволяющая не думать, сколько
-раз запускать компилятор, \exe{biber}, \exe{xindy}, существенно
+раз запускать компилятор, \exe{biber}, \exe{upmendex}, существенно
 повышает удобство использования \LaTeX. Для особо сложных случаев, когда
 в одном проекте нужны разные компиляторы \LaTeX\ (есть у меня ещё такие со
 стародавних времен), я использую GNU \exe{make} \parencite{site-make}
@@ -607,14 +607,14 @@ lethead_suffix  "}\\par\\nopagebreak"
 \begin{latexmkcode}
 $pdf_mode = 1;
 $pdflatex = 'lualatex %O %S';
-$makeindex = 'texindy -M ruseng.xdy %O %S';
+$makeindex = 'upmendex -s ruseng.ist %O %S';
 $bibtex = 'biber %O %B'
 \end{latexmkcode}
 \caption{Конфигурационный файл \file{latexmkrc}}\label{latexmk2}
 \end{figure}
 В результате запуска \exe{latexmk} компилятор запускается несколько раз,
 в промежутках вспомогательные файлы обрабатываются с помощью \exe{biber}
-и \exe{xindy} (при необходимости).
+и \exe{upmendex} (при необходимости).
 
 Впрочем, если проект достаточно сложный, с рисунками, которые генерируются
 из исходных текстов разными способами (например, \file{figure1.pdf}
@@ -691,8 +691,10 @@ Control Systems). Их изобрели для работы с исходным 
 
 \section{Пример документа}
 В данном разделе приведу пример законченного документа, который можно скомпилировать
-с помощью \LuaLaTeX{}, \exe{biber} и \exe{xindy}. Если рядом с данным документом
-разместить файл \path{latexmkrs} из примера на рисунке~\ref{latexmk2}, то
+с помощью \LuaLaTeX{}, \exe{biber} и \exe{upmendex}. Если рядом с данным документом
+разместить файл \file{latexmkrs} из примера на рисунке~\ref{latexmk2}, стилевой
+файл \file{ruseng.ist} из примера на рисунке~\ref{upmendex1} для \exe{upmendex}, а также какой-нибудь
+файл \file{referencesfile.bib}, то
 сборку всего проекта можно будет осуществить одной командой \exe{latexmk}.
 \begin{figure}[t]
 \begin{latexcode}
@@ -703,7 +705,7 @@ Control Systems). Их изобрели для работы с исходным 
 \usepackage{unicode-math}
 \setmathfont{XITS Math}
 \usepackage[english,russian]{babel}
-\usepackage[xindy,noautomatic]{imakeidx}
+\usepackage[noautomatic]{imakeidx}
 \makeindex
 \usepackage[style=gost-authoryear]{biblatex}
 \addbibresource{referencesfile.bib}
