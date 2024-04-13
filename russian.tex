@@ -18,6 +18,13 @@
 \usepackage[margin=2cm]{geometry}
 \usepackage{verbatim}
 
+\usepackage{booktabs}
+\usepackage{multirow}
+
+\usepackage{tabularray}
+\UseTblrLibrary{booktabs}
+\SetTblrInner{rowsep=0pt}
+
 \usepackage[style=gost-numeric,
             defernumbers=true,
             autolang=other,
@@ -274,7 +281,7 @@ Euler, который мне тоже нравится (время не стои
 непосредственно со шрифтами в форматах TTF и OTF. И несмотря на то, что старые
 шрифты им также доступны, таблицы переносов в \XeTeX\ и \LuaTeX\ работают только
 совместно с юникодными шрифтами, так что если мне нужен старый шрифт вроде гарнитуры
-Лиературная, который в бесплатном виде доступен только в формате Type1, то приходится
+Литературная, который в бесплатном виде доступен только в формате Type1, то приходится
 возвращаться к \pdfLaTeX. Для удобства подключения современных шрифтов
 предназначен пакет \package{fontspec} \parencite{ctan-fontspec}.
 На рис.~\ref{fontspec1}
@@ -331,8 +338,177 @@ $\mbox{\lcmd{---}}\mapsto\text{---}$ или $\mbox{\lcmd{<<>>}}\mapsto\text{<<>>
 
 Какой же из них выбрать? Мне для работы (в основном с русским и английским языками)
 вполне подходят оба эти пакета. И я выбираю пакет \package{babel} только потому, что
-он мне более привычен. Ну и время от времени я все-таки пользуюсь \pdfLaTeX, а там
+он мне более привычен. Ну и время от времени я всё-таки пользуюсь \pdfLaTeX, а там
 выбора нет.
+
+\section{Таблицы: tabularray}
+Набор таблиц в \LaTeX\ всегда был делом непростым. Стандартные средства \LaTeX\ по умолчанию генерируют таблицы весьма посредственного качества, а уж если есть необходимость в использовании объединенных ячеек, то и исходный текст превращается в нечитаемую кашу. Для набора сколько-нибудь сложных таблиц приходится подключать множество разных пакетов: \package{multirow} \parencite{ctan-multirow} для объединения ячеек по вертикали, \package{tabularx} \parencite{ctan-tabularx} для автоматического выбора ширины ячеек с переносами строк, \package{longtable} \parencite{ctan-longtable} для вёрстки таблиц, высота которых выше, чем высота страницы, \package{booktabs} \parencite{ctan-booktabs} для более качественной вёрстки таблиц с горизонтальными линиями (при этом вертикальные линии становится использовать почти невозможно, в них появляются разрывы), \package{colortbl} \parencite{ctan-colortbl} для печати цветных таблиц (также плохо совместим с \package{booktabs}) и другие. Однако, в 2021 году вышел пакет \package{tabularray} \parencite{ctan-tabularray}~--- новый пакет для набора и вёрстки таблиц в \LaTeX, который оказался настолько удачным, что заменил все приведённые выше пакеты. Единственная проблема этого пакета (с которой мне самому не приходилось сталкиваться), это его медленная работа. Утверждается, что вёрстка таблицы из тысячи строк может занимать более часа. На рис.~\ref{tabular1} и~\ref{tabularray1} приведены исходные тексты для вёрстки таблиц с одним и тем же содержанием, изображённых на рис.~\ref{tabular2} и~\ref{tabularray2}.%
+\begin{figure}[tp]
+\begin{latexcode}
+...
+\usepackage{booktabs}
+\usepackage{multirow}
+...
+\begin{tabular}{lccccc}
+\toprule
+\multirow{2}{*}[-0.5ex]{Категория} & \multicolumn{3}{c}{Бинарный классификатор} &
+\multirow{2}{*}[-0.5ex]{Голоса} & \multirow{2}{*}[-0.5ex]{Результат} \\
+\cmidrule(lr){2-4}
+        & 1 vs. 2  & 1 vs. 3  & 2 vs. 3  \\
+\midrule
+Класс 1 & Выигрыш  & Выигрыш  & --       & 2 & Выигрыш \\ 
+Класс 2 & Проигрыш & --       & Выигрыш  & 1 & Проигрыш \\ 
+Класс 3 & --       & Проигрыш & Проигрыш & 0 & Проигрыш \\ 
+\bottomrule
+\end{tabular}
+\end{latexcode}
+\caption{Вёрстка таблицы с помощью окружения \package{tabular}}\label{tabular1}
+\end{figure}%
+\begin{figure}[tp]
+\begin{latexcode}
+...
+\usepackage{tabularray}
+\UseTblrLibrary{booktabs}
+\SetTblrInner{rowsep=0pt}
+...
+\begin{booktabs}{
+  colspec={lccccc},
+  cell{1}{1,5,6}={r=2}{},
+  cell{1}{2}={c=3}{}
+}
+\toprule
+Категория & Бинарный классификатор   &  &  & Голоса & Результат \\
+\cmidrule[lr]{2-4}
+          & 1 vs. 2  & 1 vs. 3  & 2 vs. 3  \\
+\midrule
+Класс 1   & Выигрыш  & Выигрыш  & --       & 2      & Выигрыш \\ 
+Класс 2   & Проигрыш & --       & Выигрыш  & 1      & Проигрыш \\ 
+Класс 3   & --       & Проигрыш & Проигрыш & 0      & Проигрыш \\ 
+\bottomrule
+\end{booktabs}
+\end{latexcode}
+\caption{Вёрстка таблицы с помощью окружения \package{booktabs} (пакет \package{tabularray})}\label{tabularray1}
+\end{figure}%
+\begin{figure}[tp]
+\begin{tcolorbox}[colback=white,colframe=white]
+\centering
+\begin{tabular}{lccccc}
+\toprule
+\multirow{2}{*}[-0.5ex]{Категория} & \multicolumn{3}{c}{Бинарный классификатор} &
+\multirow{2}{*}[-0.5ex]{Голоса} & \multirow{2}{*}[-0.5ex]{Результат} \\
+\cmidrule(lr){2-4}
+        & 1 vs. 2  & 1 vs. 3  & 2 vs. 3  \\
+\midrule
+Класс 1 & Выигрыш  & Выигрыш  & --       & 2 & Выигрыш \\ 
+Класс 2 & Проигрыш & --       & Выигрыш  & 1 & Проигрыш \\ 
+Класс 3 & --       & Проигрыш & Проигрыш & 0 & Проигрыш \\ 
+\bottomrule
+\end{tabular}
+\end{tcolorbox}
+\caption{Результат вёрстки таблицы с помощью окружения \package{tabular}}\label{tabular2}
+\end{figure}%
+\begin{figure}[tp]
+\begin{tcolorbox}[colback=white,colframe=white]
+\centering
+\begin{booktabs}{
+  colspec={lccccc},
+  cell{1}{1,5,6}={r=2}{},
+  cell{1}{2}={c=3}{}
+}
+\toprule
+Категория & Бинарный классификатор   &  &  & Голоса & Результат \\
+\cmidrule[lr]{2-4}
+          & 1 vs. 2  & 1 vs. 3  & 2 vs. 3  \\
+\midrule
+Класс 1   & Выигрыш  & Выигрыш  & --       & 2      & Выигрыш \\ 
+Класс 2   & Проигрыш & --       & Выигрыш  & 1      & Проигрыш \\ 
+Класс 3   & --       & Проигрыш & Проигрыш & 0      & Проигрыш \\ 
+\bottomrule
+\end{booktabs}
+\end{tcolorbox}
+\caption{Результат вёрстки таблицы с помощью окружения \package{booktabs} (пакет \package{tabularray})}\label{tabularray2}
+\end{figure}
+Как можно видеть из рис.~\ref{tabular2} и~\ref{tabularray2}, результаты получились почти идентичными, но при этом исходный текст для окружения \package{booktabs} из пакета \package{tabularray} (рис.~\ref{tabularray1}) выглядит намного более читаемым, чем исходный текст для окружения \package{tabular} (рис.~\ref{tabular1}). При использовании окружения \package{tabular} пришлось даже вручную подправить положение текста в ячейках, объединённых по вертикали. Приведу также пример длинной таблицы, не помещающейся целиком на одной странице (в данном случае в одной колонке) со строками разных цветов (рис.~\ref{tabularray3} и~\ref{tabularray4}).
+\begin{figure}[tp]
+\begin{latexcode}
+...
+\usepackage{tabularray}
+\DefTblrTemplate{conthead-text}{default}{(продолжение)}%
+\DefTblrTemplate{contfoot-text}{default}{Продолжение следует}%
+...
+\begin{longtblr}[
+  label={table1},
+  caption={Пример},
+  remark{Примечание}={Таблица не помещается на страницу.}
+]{
+  colspec={XX},
+  rowhead=1,
+  rowfoot=1,
+  row{even}={bg=black!10!white},
+  row{1}={bg=black!50!white,fg=white},
+  row{Z}={bg=black!40!white,fg=white},
+  hline{1,Z}={1pt},
+  hline{2,Y}={0.5pt}
+}
+Заголовок & Заголовок \\
+Альфа     & Бета      \\
+Гамма     & Дельта    \\
+Эпсилон   & Дзета     \\
+Эта       & Тета      \\
+Йота      & Каппа     \\
+Лямбда    & Мю        \\
+Ню        & Кси       \\
+Омикрон   & Пи        \\
+Ро        & Сигма     \\
+Тау       & Ипсилон   \\
+Фи        & Хи        \\
+Пси       & Омега     \\
+Подвал    & Подвал    \\
+\end{longtblr}
+\end{latexcode}
+\caption{Вёрстка таблицы с помощью окружения \package{booktabs} (пакет \package{tabularray})}\label{tabularray3}
+\end{figure}%
+\begin{figure}[tp]
+\DefTblrTemplate{conthead-text}{default}{(продолжение)}%
+\DefTblrTemplate{contfoot-text}{default}{Продолжение следует}%
+\begin{tcolorbox}[colback=white,colframe=white]%
+\vbox to 8.5cm {%
+\begin{multicols}{2}%
+\vspace*{-11pt}
+\begin{longtblr}[
+  label={table1},
+  caption={Пример},
+  remark{Примечание}={Таблица не помещается на страницу.},
+  presep=0pt
+]{
+  colspec={XX},
+  rowhead=1,
+  rowfoot=1,
+  row{even}={bg=black!10!white},
+  row{1}={bg=black!50!white,fg=white},
+  row{Z}={bg=black!40!white,fg=white},
+  hline{1,Z}={1pt},
+  hline{2,Y}={0.5pt}
+}
+Заголовок & Заголовок \\
+Альфа     & Бета      \\
+Гамма     & Дельта    \\
+Эпсилон   & Дзета     \\
+Эта       & Тета      \\
+Йота      & Каппа     \\
+Лямбда    & Мю        \\
+Ню        & Кси       \\
+Омикрон   & Пи        \\
+Ро        & Сигма     \\
+Тау       & Ипсилон   \\
+Фи        & Хи        \\
+Пси       & Омега     \\
+Подвал    & Подвал    \\
+\end{longtblr}
+\end{multicols}}
+\end{tcolorbox}
+\caption{Результат вёрстки таблицы с помощью окружения \package{longtblr} (пакет \package{tabularray})}\label{tabularray4}
+\end{figure}
 
 \section{Библиография: biblatex и biber}
 Исторически первым инструментом для автоматического построения
@@ -487,7 +663,7 @@ $\mbox{\lcmd{---}}\mapsto\text{---}$ или $\mbox{\lcmd{<<>>}}\mapsto\text{<<>>
 Поэтому сейчас я отказался от использования \exe{xindy} и перешел на недавно появившийся \exe{upmendex} \parencite{ctan-upmendex}. Краткую инструкцию по настройке \exe{xindy} вы можете найти в приложении~\ref{sec:xindy}, она может пригодиться для случаев, когда \exe{upmendex} оказывается недостаточно гибким: он, например, не поддерживает глубину вложения указателей больше трех уровней.
 
 \exe{upmendex} по использованию очень похож на оригинальный \exe{makeindex}, но работает только в кодировке UTF-8
-и поддерживает огромное число языков и систем письма (латиница, кириллица, греческий, иероглифы, японская кана, девангари и т.\,д.).
+и поддерживает огромное число языков и систем письма (латиница, кириллица, греческий, иероглифы, японская кана, деванагари и т.\,д.).
 Для сортировки \exe{upmendex} использует библиотеку ICU (International Components for Unicode, \parencite{site-icu}),
 соответственно, это обеспечивает правильную сортировку списков для подавляющего множества языков мира. Для простых
 предметных указателей на русском и английском языке настройка сортировки сводится к указанию русской локали (английские
