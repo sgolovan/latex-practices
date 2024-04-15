@@ -999,7 +999,7 @@ Control Systems). Их изобрели для работы с исходным 
 }
 
 \clearpage
-\subsection{Cyrillic Modern \& Latin Modern Math}
+\subsection[Cyrillic Modern \& Latin Modern Math]{Cyrillic Modern \parencite{font-nm} \& Latin Modern Math \parencite{ctan-lm-math}}
 \setcounter{equation}{0}
 \setmainfont{Cyrillic Modern}[ItalicFont=nmti,BoldFont=nmbx]
 \setmathfont[version=lm,mathrm=sym]{Latin Modern Math}
@@ -1332,7 +1332,7 @@ Control Systems). Их изобрели для работы с исходным 
 \clearpage
 \phantomsection
 \addcontentsline{toc}{section}{Список литературы}%
-\printbibliography[notkeyword=example,notkeyword=ctan,notkeyword=soft,notkeyword=question,resetnumbers=1]
+\printbibliography[notkeyword=example,notkeyword=ctan,notkeyword=soft,notkeyword=question,notkeyword=font,resetnumbers=1]
 \phantomsection
 \addcontentsline{toc}{section}{Ссылки на вопросы и обсуждения}%
 \printbibliography[keyword=question,title={Ссылки на вопросы и обсуждения}]
@@ -1342,6 +1342,9 @@ Control Systems). Их изобрели для работы с исходным 
 \phantomsection
 \addcontentsline{toc}{section}{Ссылки на программное обеспечение и сервисы}%
 \printbibliography[keyword=soft,title={Ссылки на программное обеспечение и сервисы}]
+\phantomsection
+\addcontentsline{toc}{section}{Ссылки на шрифты}%
+\printbibliography[keyword=font,title={Ссылки на шрифты}]
 
 \clearpage
 \appendix
