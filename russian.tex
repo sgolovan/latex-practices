@@ -1220,7 +1220,7 @@ Control Systems). Их изобрели для работы с исходным 
 \small
 \begin{latexcode}
 \setmainfont{PT Serif}
-\setmathfont[Scale=MatchUppercase]{Cambria Math}
+\setmathfont{Cambria Math}[Scale=MatchUppercase]
 \end{latexcode}
 \mathsamplerus{pt}
 
@@ -1276,7 +1276,7 @@ Control Systems). Их изобрели для работы с исходным 
 \small
 \begin{latexcode}
 \setmainfont{PT Sans}
-\setmathfont[Scale=MatchLowercase]{Fira Math}
+\setmathfont{Fira Math}[Scale=MatchLowercase]
 \end{latexcode}
 \mathsamplerus{ptsans}
 
@@ -1310,31 +1310,28 @@ Control Systems). Их изобрели для работы с исходным 
 
 \clearpage
 \normalsize
-\subsection[Jost 350 \& GFS Neohellenic Math]{Jost 350 \parencite{google-fonts-jost} \& GFS Neohellenic Math \parencite{ctan-gfsneohellenicmath}}
+\subsection[Jost \& GFS Neohellenic Math]{Jost \parencite{google-fonts-jost} \& GFS Neohellenic Math \parencite{ctan-gfsneohellenicmath}}
 \setcounter{equation}{0}
 \defaultfontfeatures{RawFeature={+axis={wght=350}}}
 \setmainfont[
-    Scale=0.95,
-    ItalicFont=Jost-Italic-VariableFont_wght.ttf,
     BoldFont=Jost-VariableFont_wght.ttf,
+    ItalicFont=Jost-Italic-VariableFont_wght.ttf,
     BoldItalicFont=Jost-Italic-VariableFont_wght.ttf,
-    BoldFeatures={RawFeature={+axis={wght=500}}},
-    BoldItalicFeatures={RawFeature={+axis={wght=500}}}
+    BoldFeatures={RawFeature={+axis={wght=550}}},
+    BoldItalicFeatures={RawFeature={+axis={wght=550}}}
 ]{Jost-VariableFont_wght.ttf}
-\setmathfont[version=jost,mathrm=sym]{GFS Neohellenic Math}
+\setmathfont[Scale=MatchUppercase,ScaleAgain=0.99999,version=jost,mathrm=sym]{GFS Neohellenic Math}
 \mathversion{jost}
 \vspace*{-1ex}
 \small
 \begin{latexcode}
 \defaultfontfeatures{RawFeature={+axis={wght=350}}}
-\setmainfont{Jost-VariableFont_wght.ttf}[
-  Scale=0.95,
+\setmainfont{Jost-VariableFont_wght.ttf}[BoldFont=Jost-VariableFont_wght.ttf,
   ItalicFont=Jost-Italic-VariableFont_wght.ttf,
-  BoldFont=Jost-VariableFont_wght.ttf,
   BoldItalicFont=Jost-Italic-VariableFont_wght.ttf,
-  BoldFeatures={RawFeature={+axis={wght=500}}},
-  BoldItalicFeatures={RawFeature={+axis={wght=500}}}]
-\setmathfont{GFS Neohellenic Math}
+  BoldFeatures={RawFeature={+axis={wght=550}}},
+  BoldItalicFeatures={RawFeature={+axis={wght=550}}}]
+\setmathfont{GFS Neohellenic Math}[Scale=MatchUppercase]
 \end{latexcode}
 \vspace*{-1ex}
 \abovedisplayskip=6pt plus 3pt minus 3pt
