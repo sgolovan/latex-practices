@@ -5,6 +5,8 @@
 \usepackage{dtk-logos}
 \usepackage{hologo}
 
+%\usepackage[All]{lua-typo}
+
 \usepackage{microtype}
 \usepackage{fontspec}
 \setmainfont{STIX Two Text}
@@ -172,7 +174,7 @@
 поэтому первой кириллической кодировкой для моих текстов была так называемая
 альтернативная кодовая страница или CP866. Потом появился GNU/Linux и кодировка
 KOI8-R, а потом оказалось, что обмениваться исходными текстами в этой кодировке
-неудобно, так как все вокруг пользуются MS Windows, поэтому я перешел на
+неудобно, так как все вокруг пользуются MS Windows, поэтому я перешёл на
 CP1251 (у которой по сравнению с KOI8-R есть и другие преимущества, например
 более удобное множество символов). Однако если в тексте попадается какой-нибудь
 нестандартный символ или слово (греческое, китайский иероглиф и т.\,п.), то
@@ -614,7 +616,7 @@ $\mbox{\lcmd{---}}\mapsto\text{---}$ или $\mbox{\lcmd{<<>>}}\mapsto\text{<<>>
 \end{figure}
 списка литературы и собственно печатающая его.)
 К сожалению, в своём оригинальном виде \BibTeX\ предназначается только
-для работы с англоязычной литературой в кодировке ASCII (то, что
+для работы с~англоязычной литературой в кодировке ASCII (то, что
 он как-то работает с восьмибитными кодировками "--- счастливая случайность,
 а то что в кодировке CP1251 ещё и сортировка по алфавиту работает,
 кроме буквы <<Ё>>, это ещё одна приятная, но неожиданность). Поддержку различных
@@ -695,7 +697,7 @@ $\mbox{\lcmd{---}}\mapsto\text{---}$ или $\mbox{\lcmd{<<>>}}\mapsto\text{<<>>
 Некоторое время я пользовался \exe{xindy} \parencite{ctan-xindy} для печати предметных указателей. Эта программа
 вполне удовлетворительно работает с указателями на нескольких языках, но требует для этого довольно специфической настройки.
 Кроме того, документация \exe{xindy} не всегда понятная, ну и работает \exe{xindy} не всегда \parencite{se-xindy}.
-Поэтому сейчас я отказался от использования \exe{xindy} и перешел на недавно появившийся \exe{upmendex} \parencite{ctan-upmendex}. Краткую инструкцию по настройке \exe{xindy} вы можете найти в приложении~\ref{sec:xindy}, она может пригодиться для случаев, когда \exe{upmendex} оказывается недостаточно гибким: он, например, не поддерживает глубину вложения указателей больше трех уровней.
+Поэтому сейчас я отказался от использования \exe{xindy} и перешёл на недавно появившийся \exe{upmendex} \parencite{ctan-upmendex}. Краткую инструкцию по~настройке \exe{xindy} вы можете найти в приложении~\ref{sec:xindy}, она может пригодиться для случаев, когда \exe{upmendex} оказывается недостаточно гибким: он, например, не поддерживает глубину вложения указателей больше трех уровней.
 
 \exe{upmendex} по использованию очень похож на оригинальный \exe{makeindex}, но работает только в кодировке UTF-8
 и поддерживает огромное число языков и систем письма (латиница, кириллица, греческий, иероглифы, японская кана, деванагари и т.\,д.).
@@ -945,7 +947,7 @@ Control Systems). Их изобрели для работы с исходным 
   $\varphi(\alpha)\mathrel{:=}\int_0^\infty e^{-\alpha t}g(t)\,dt$ "--- её преобразование Лапласа.
   Тогда для любого $t>0$,
   \begin{equation}
-    g(t) = \lim_{\varepsilon\to0}\lim_{\lambda\to\infty}\varepsilon^{-1}
+    g(t) = \mathop{\textrm{lim}}_{\varepsilon\to0}\mathop{\textrm{lim}}_{\lambda\to\infty}\varepsilon^{-1}
            \sum_{\lambda t<k\leqslant(\lambda+\varepsilon)t}\frac{(-1)^k}{k!}\lambda^k\varphi^{(k)}(\lambda).
   \end{equation}
 
@@ -967,7 +969,7 @@ Control Systems). Их изобрели для работы с исходным 
   \example{Формула \emph{Стирлинга}}
   \begin{equation}
     \Gamma(z) \sim e^{-z}z^{z−1/2}\sqrt{2\pi}\left[1+\frac{1}{12z}+\frac{1}{288z^2}-\frac{139}{51840z^3}+\dotsb\right],\quad
-      \text{$z\to\infty$ при $\mathopen|\arg z\mathclose|<\pi$.}
+    \text{$z\to\infty$ при $\mathopen|\mathop{\textrm{arg}} z\mathclose|<\pi$.}
   \end{equation}
 
   \example{Кривые \emph{Безье}}
@@ -993,20 +995,20 @@ Control Systems). Их изобрели для работы с исходным 
   Пусть $\gamma$ "--- \emph{спрямляемая кривая} в $G$, не~проходящая ни~через одну из точек $a_k$, и пусть
   $\gamma\approx0$ в $G$. Тогда
   \begin{equation*}
-    \frac{1}{2\pi i}\int_\gamma f=\sum_{k=1}^m n(\gamma;a_k)\Res(f;a_k).
+    \frac{1}{2\pi i}\int_\gamma f=\sum_{k=1}^m n(\gamma;a_k)\mathop{\textrm{Res}}(f;a_k).
   \end{equation*}
 
   \example{Принцип максимума модуля}
   Пусть $G$ "--- ограниченное открытое подмножество $\mathbb{C}$, и~пусть $f$ "--- функция, непрерывная на $\overline{G}$
   и голоморфная в $G$. Тогда
   \begin{equation*}
-    \max\{|f(z)|\colon z\in\overline{G}\}=\max\{|f(z)|\colon z\in\partial G\}.
+    \mathop{\textrm{max}}\{|f(z)|\colon z\in\overline{G}\}=\mathop{\textrm{max}}\{|f(z)|\colon z\in\partial G\}.
   \end{equation*}
 
   \example{Тождество \emph{Якоби}}
   Определим \emph{тета-функцию $\theta$} равенством
   \begin{equation*}
-    \theta(t) = \sum_{n=-\infty}^\infty\exp(-\pi n^2t),\quad t>0.
+    \theta(t) = \sum_{n=-\infty}^\infty\mathop{\textrm{exp}}(-\pi n^2t),\quad t>0.
   \end{equation*}
   Тогда
   \begin{equation*}
