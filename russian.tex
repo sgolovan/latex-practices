@@ -73,14 +73,14 @@
 \usepackage[dotinlabels]{titletoc}
 \titlecontents{section}
 [2.8em]
-{\smallskip}
+{}
 {\contentslabel{1.8em}}
 {\hspace*{-1.8em}}
 {\titlerule*[1pc]{.\iftocodd\global\tocoddfalse\else\hbox to0.5pc{\hss}\global\tocoddtrue\fi}\contentspage}
 
 \titlecontents{subsection}
 [5.6em]
-{\vspace{3pt}}
+{}
 {\contentslabel{3.05em}}
 {\hspace*{-3.05em}}
 {\titlerule*[1pc]{.\iftocodd\global\tocoddfalse\else\hbox to0.5pc{\hss}\global\tocoddtrue\fi}\contentspage}
@@ -136,9 +136,13 @@
 \displaywidowpenalty=10000
 
 \begin{document}
-\pdfbookmark[1]{LaTEX в 2024 году}{title}%
+\vspace*{7cm}
+\pdfbookmark[1]{LaTeX в 2024 году}{title}%
 \vspace{-\baselineskip}%
-\maketitle
+{\let\newpage\relax\maketitle}
+\thispagestyle{empty}
+
+\clearpage
 \pdfbookmark[1]{Содержание}{toc}%
 \vspace{-\baselineskip}%
 \tableofcontents
