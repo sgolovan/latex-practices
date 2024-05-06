@@ -85,6 +85,13 @@
 {\hspace*{-3.05em}}
 {\titlerule*[1pc]{.\iftocodd\global\tocoddfalse\else\hbox to0.5pc{\hss}\global\tocoddtrue\fi}\contentspage}
 
+\titlecontents{figure}
+[2.8em]
+{}
+{\contentslabel{1.8em}}
+{\hspace*{-1.8em}}
+{\titlerule*[1pc]{.\iftocodd\global\tocoddfalse\else\hbox to0.5pc{\hss}\global\tocoddtrue\fi}\contentspage}
+
 \usepackage[colorlinks,allcolors=blue,hyperindex=false]{hyperref}
 \newcommand\foothref[2]{%
   \href{#1}{#2}\footnote{\url{#1}}%
@@ -99,10 +106,23 @@
 \newcommand\lcmd[1]{\mintinline{latex}{#1}}
 \DeclareRobustCommand{\myBibTeX}{\BibTeX}
 \DeclareRobustCommand{\TikZ}{\textrm{Ti\textit{k}Z}}
+\makeatletter
+\DeclareRobustCommand{\myLaTeX}{L\kern-.28em%
+        {\sbox\z@ T%
+         \vbox to\ht\z@{\hbox{\check@mathfonts
+                              \fontsize\sf@size\z@
+                              \math@fontsfalse\selectfont
+                              \bfseries A}%
+                        \vss}%
+        }%
+        \kern-.07em%
+        \TeX}
+\makeatother
 
 \usepackage{epigraph}
 
-\title{\sffamily\LaTeX\ в 2024 году}
+
+\title{\sffamily\myLaTeX\ в 2024 году}
 \author{Сергей Головань}
 %\date{}
 
@@ -213,7 +233,7 @@ UTF-8 «из коробки» как основную и единственну�
 отформатированные в \LaTeX, и появились удобные неинтерактивные средства создания
 иллюстраций (например, \softname{Asymptote}
 \begin{otherlanguage}{english}\parencite{site-asymptote,ctan-asymptote}\end{otherlanguage},
-PGF/Ti\emph{k}z \parencite{ctan-pgf} и \package{pgfplots} \parencite{ctan-pgfplots},
+PGF/\TikZ \parencite{ctan-pgf} и \package{pgfplots} \parencite{ctan-pgfplots},
 \softname{Matplotlib} \parencite{site-matplotlib}), так что нужда в \package{psfrag}
 отпала. А поскольку сам по себе формат DVI непереносим (иллюстрации не
 внедряются, шрифты не внедряются), то получается, что лучшим форматом на данный
@@ -1358,6 +1378,10 @@ Control Systems). Их изобрели для работы с исходным 
 \phantomsection
 \addcontentsline{toc}{section}{Ссылки на шрифты}%
 \printbibliography[keyword=font,title={Ссылки на шрифты}]
+\phantomsection
+\addcontentsline{toc}{section}{Список иллюстраций}%
+\tocoddtrue
+\listoffigures
 
 \clearpage
 \appendix
