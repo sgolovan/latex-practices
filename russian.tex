@@ -477,8 +477,9 @@ $\mbox{\lcmd{---}}\mapsto\text{---}$ или $\mbox{\lcmd{<<>>}}\mapsto\text{<<>>
 \begin{latexcode}
 ...
 \usepackage{tabularray}
-\DefTblrTemplate{conthead-text}{default}{(продолжение)}%
-\DefTblrTemplate{caption-sep}{default}{. }%
+\DefTblrTemplate{conthead-text}{default}{(продолжение)}
+\DefTblrTemplate{contfoot-text}{default}{Продолжение следует}
+\DefTblrTemplate{caption-sep}{default}{. }
 ...
 \begin{longtblr}[
   label={table1},
@@ -486,8 +487,7 @@ $\mbox{\lcmd{---}}\mapsto\text{---}$ или $\mbox{\lcmd{<<>>}}\mapsto\text{<<>>
   remark{Примечание}={Таблица разорвана на две колонки.}
 ]{
   colspec={XX},
-  rowhead=1,
-  rowfoot=1,
+  rowhead=1,rowfoot=1,
   row{even}={bg=black!10!white},
   row{1}={bg=black!50!white,fg=white},
   row{Z}={bg=black!40!white,fg=white},
@@ -510,12 +510,20 @@ $\mbox{\lcmd{---}}\mapsto\text{---}$ или $\mbox{\lcmd{<<>>}}\mapsto\text{<<>>
 Подвал    & Подвал    \\
 \end{longtblr}
 \end{latexcode}
-\captionof{figure}{Вёрстка таблицы с помощью окружения \package{longtblr} (пакет \package{tabularray})}\label{tabularray3}
+\caption{Вёрстка таблицы с помощью окружения \package{longtblr} (пакет \package{tabularray})}\label{tabularray3}
 \end{figure}%
-\begin{figure}[t]
-{\DefTblrTemplate{conthead-text}{default}{(продолжение)}%
+\newdimen\savepagetotal
+\newdimen\savepagegoal
+\savepagetotal=\pagetotal
+\pagetotal=0cm
+\savepagegoal=\pagegoal
+\pagegoal=7cm
+\newsavebox\tblrsavebox
+\savebox{\tblrsavebox}{%
+\begin{tcolorbox}[colback=white,colframe=white]%
+\DefTblrTemplate{conthead-text}{default}{(продолжение)}%
+\DefTblrTemplate{contfoot-text}{default}{Продолжение следует}%
 \DefTblrTemplate{caption-sep}{default}{. }%
-\begin{tcolorbox}[colback=white,colframe=white,height=7.5cm]%
 \begin{multicols}{2}%
 \vspace*{-11pt}
 \begin{longtblr}[
@@ -541,7 +549,6 @@ $\mbox{\lcmd{---}}\mapsto\text{---}$ или $\mbox{\lcmd{<<>>}}\mapsto\text{<<>>
 Йота      & Каппа     \\
 Лямбда    & Мю        \\
 Ню        & Кси       \\
-\pagebreak
 Омикрон   & Пи        \\
 Ро        & Сигма     \\
 Тау       & Ипсилон   \\
@@ -550,9 +557,13 @@ $\mbox{\lcmd{---}}\mapsto\text{---}$ или $\mbox{\lcmd{<<>>}}\mapsto\text{<<>>
 Подвал    & Подвал    \\
 \end{longtblr}%
 \end{multicols}%
-\end{tcolorbox}
-\captionof{figure}{Результат вёрстки таблицы с помощью \package{longtblr} (пакет \package{tabularray})}\label{tabularray4}
+\end{tcolorbox}%
 }
+\pagegoal=\savepagegoal
+\pagetotal=\savepagetotal
+\begin{figure}[t]
+\usebox{\tblrsavebox}
+\caption{Результат вёрстки таблицы с помощью \package{longtblr} (пакет \package{tabularray})}\label{tabularray4}
 \end{figure}
 Отмечу, что пакет \package{tabularray} все ещё находится в~разработке, поэтому в~нём иногда попадаются ошибки. Кроме того, он пока еще не~описан ни в~одном русскоязычном
 учебнике, так что для его освоения придётся прочитать документацию.
