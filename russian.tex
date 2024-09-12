@@ -67,28 +67,27 @@
 \titleformat{\section}{\Large\sffamily\bfseries}{\thesection.}{1em}{}
 \titleformat{\subsection}{\large\sffamily\bfseries}{\thesubsection.}{1em}{}
 
-
 \newif\iftocodd
 \tocoddtrue
 
 \usepackage[dotinlabels]{titletoc}
 \titlecontents{section}
 [2.8em]
-{\vspace{1.5pt}}
+{\vspace{1.35pt}}
 {\contentslabel{1.8em}}
 {\hspace*{-1.8em}}
 {\titlerule*[1pc]{.\iftocodd\global\tocoddfalse\else\hbox to0.5pc{\hss}\global\tocoddtrue\fi}\contentspage}
 
 \titlecontents{subsection}
 [5.6em]
-{\vspace{1.5pt}}
+{\vspace{1.35pt}}
 {\contentslabel{3.05em}}
 {\hspace*{-3.05em}}
 {\titlerule*[1pc]{.\iftocodd\global\tocoddfalse\else\hbox to0.5pc{\hss}\global\tocoddtrue\fi}\contentspage}
 
 \titlecontents{figure}
 [2.8em]
-{\vspace{1.5pt}}
+{\vspace{1.35pt}}
 {\contentslabel{1.8em}}
 {\hspace*{-1.8em}}
 {\titlerule*[1pc]{.\iftocodd\global\tocoddfalse\else\hbox to0.5pc{\hss}\global\tocoddtrue\fi}\contentspage}
@@ -1301,6 +1300,20 @@ Control Systems). Их изобрели для работы с исходным 
 \usepackage{xcharter-otf}
 \end{latexcode}
 \mathsamplerus{xcharter}
+
+\clearpage
+\normalsize
+\subsection[IBM Plex Serif \& IBM Plex Math]{IBM Plex Serif \parencite{ctan-plex-otf} \& IBM Plex Math \parencite{font-plex-math}}
+\setcounter{equation}{0}
+\setmainfont[Scale=0.97]{IBM Plex Serif}
+\setmathfont[version=ibmplex,mathrm=sym,Scale=0.97]{IBM Plex Math}
+\mathversion{ibmplex}
+\small
+\begin{latexcode}
+\setmainfont{IBM Plex Serif}
+\setmathfont{IBM Plex Math Math}
+\end{latexcode}
+\mathsamplerus{ibmplex}
 
 \clearpage
 \normalsize
