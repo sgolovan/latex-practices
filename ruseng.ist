@@ -1,0 +1,6 @@
+icu_locale "ru"
+character_order "CLSNGJKHDTah"
+
+lethead_flag 1
+lethead_prefix "\n  \\par\\textbf{"
+lethead_suffix  "}\\par\\nopagebreak"
