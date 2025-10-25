@@ -73,21 +73,21 @@
 \usepackage[dotinlabels]{titletoc}
 \titlecontents{section}
 [2.8em]
-{\vspace{1.0pt}}
+{\vspace{0.7pt}}
 {\contentslabel{1.8em}}
 {\hspace*{-1.8em}}
 {\titlerule*[1pc]{.\iftocodd\global\tocoddfalse\else\hbox to0.5pc{\hss}\global\tocoddtrue\fi}\contentspage}
 
 \titlecontents{subsection}
 [5.6em]
-{\vspace{1.0pt}}
+{\vspace{0.7pt}}
 {\contentslabel{3.05em}}
 {\hspace*{-3.05em}}
 {\titlerule*[1pc]{.\iftocodd\global\tocoddfalse\else\hbox to0.5pc{\hss}\global\tocoddtrue\fi}\contentspage}
 
 \titlecontents{figure}
 [2.8em]
-{\vspace{1.0pt}}
+{\vspace{0.7pt}}
 {\contentslabel{1.8em}}
 {\hspace*{-1.8em}}
 {\titlerule*[1pc]{.\iftocodd\global\tocoddfalse\else\hbox to0.5pc{\hss}\global\tocoddtrue\fi}\contentspage}
@@ -1067,7 +1067,7 @@ Control Systems). Их изобрели для работы с исходным 
 }
 
 \clearpage
-\subsection[Cyrillic Modern \& Latin Modern Math]{Cyrillic Modern \parencite{font-nm} \& Latin Modern Math \parencite{ctan-lm-math}}
+\subsection[Cyrillic Modern \& Latin Modern Math]{Cyrillic Modern \parencite{ctan-cyrillic-modern} \& Latin Modern Math \parencite{ctan-lm-math}}
 \setcounter{equation}{0}
 \setmainfont{Cyrillic Modern}[ItalicFont=NMTI10,BoldFont=NMBX10]
 \setmathfont[version=lm,mathrm=sym]{Latin Modern Math}
@@ -1403,6 +1403,20 @@ Control Systems). Их изобрели для работы с исходным 
 
 \clearpage
 \normalsize
+\subsection[Arsenal \& Arsenal Math]{Arsenal \parencite{ctan-arsenal} \& Arsenal Math \parencite{ctan-arsenal-math}}
+\setcounter{equation}{0}
+\setmainfont{Arsenal}
+\setmathfont[version=arsenal,mathrm=sym]{Arsenal Math}
+\mathversion{arsenal}
+\small
+\begin{latexcode}
+\setmainfont{Arsenal}
+\setmathfont{Arsenal Math}
+\end{latexcode}
+\mathsamplerus{arsenal}
+
+\clearpage
+\normalsize
 \subsection[Jost \& GFS Neohellenic Math]{Jost \parencite{google-fonts-jost} \& GFS Neohellenic Math \parencite{ctan-gfsneohellenicmath}}
 \setcounter{equation}{0}
 \defaultfontfeatures{RawFeature={+axis={wght=350}}}
@@ -1437,12 +1451,14 @@ Control Systems). Их изобрели для работы с исходным 
 
 \clearpage
 \normalsize
+\setlength\bibitemsep{0.27\baselineskip}%
 \phantomsection
 \addcontentsline{toc}{section}{Список литературы}%
 \printbibliography[notkeyword=example,notkeyword=ctan,notkeyword=soft,notkeyword=question,notkeyword=font,resetnumbers=1]
 \phantomsection
 \addcontentsline{toc}{section}{Ссылки на вопросы, обсуждения и форумы}%
 \printbibliography[keyword=question,title={Ссылки на вопросы, обсуждения и форумы}]
+\pagebreak
 \phantomsection
 \addcontentsline{toc}{section}{Ссылки на пакеты CTAN}%
 \printbibliography[keyword=ctan,title={Ссылки на пакеты CTAN}]
